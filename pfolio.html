@@ -48,7 +48,7 @@
 
         .header-content {
             position: relative;
-            z-index: 1;
+            z-index: ;
         }
 
         .main-title {
@@ -94,14 +94,21 @@
 
         .page {
             padding: 40px;
-            min-height: 100vh;
+            min-height: 10vh;
             page-break-before: always;
         }
 
         .page-content {
             max-width: 100%;
         }
-
+        h5 {
+            color: #2F5496;
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #448DD0;
+            
+        }
         h1 {
             color: #2F5496;
             font-size: 2em;
@@ -431,7 +438,7 @@
                 <a href="rapport.html">📊 Rapport complet</a>
             </div>
             <div class="header-content">
-                <h1 class="main-title">Portfolio QUALI'MES</h1>
+                <h5 class="main-title">Portfolio QUALI'MES</h5>
                 <div class="subtitle">Développement et optimisation d'un logiciel MES</div>
                 <div class="date-info">Thomas BOUVAIS - Alternance Qualigest 2024-2025</div>
             </div>
@@ -444,76 +451,62 @@
             <div class="toc">
                 <div class="toc-item toc-level-1">
                     <a href="#introduction">1. Introduction</a>
-                    <span>1</span>
                 </div>
                 
                 <div class="toc-item toc-level-1">
                     <a href="#qualimes">2. QUALI'MES</a>
-                    <span>2</span>
                 </div>
                 <div class="toc-item toc-level-2">
                     <a href="#presentation">2.1 Présentation du logiciel</a>
-                    <span>2</span>
                 </div>
                 <div class="toc-item toc-level-2">
                     <a href="#debug">2.2 Débug</a>
-                    <span>3</span>
                 </div>
                 <div class="toc-item toc-level-3">
                     <a href="#debug-cahier">2.2.1 Cahier des charges</a>
-                    <span>3</span>
                 </div>
                 <div class="toc-item toc-level-3">
                     <a href="#debug-realisations">2.2.2 Réalisations</a>
-                    <span>3</span>
                 </div>
                 <div class="toc-item toc-level-3">
                     <a href="#debug-competences">2.2.3 Valorisation des compétences C4 et C5</a>
-                    <span>4</span>
                 </div>
                 <div class="toc-item toc-level-2">
                     <a href="#clignotement">2.3 Clignotement verrine</a>
-                    <span>5</span>
                 </div>
                 <div class="toc-item toc-level-3">
                     <a href="#clignotement-cahier">2.3.1 Cahier des charges</a>
-                    <span>5</span>
                 </div>
                 <div class="toc-item toc-level-3">
                     <a href="#clignotement-realisations">2.3.2 Réalisations</a>
-                    <span>6</span>
                 </div>
                 <div class="toc-item toc-level-3">
                     <a href="#clignotement-competences">2.3.3 Valorisation des compétences C3 et C4</a>
-                    <span>7</span>
                 </div>
                 <div class="toc-item toc-level-2">
                     <a href="#mongodb">2.4 Récupération mongoDB</a>
-                    <span>8</span>
                 </div>
                 <div class="toc-item toc-level-3">
                     <a href="#mongodb-cahier">2.4.1 Cahier des charges</a>
-                    <span>8</span>
                 </div>
                 <div class="toc-item toc-level-3">
                     <a href="#mongodb-realisations">2.4.2 Réalisations</a>
-                    <span>8</span>
                 </div>
                 <div class="toc-item toc-level-3">
                     <a href="#mongodb-competences">2.4.3 Valorisation des compétences C3, C4 et C5</a>
-                    <span>9</span>
                 </div>
                 
                 <div class="toc-item toc-level-1">
                     <a href="#illustrations">Table des illustrations</a>
-                    <span>10</span>
                 </div>
                 <div class="toc-item toc-level-1">
                     <a href="#glossaire">Glossaire, abréviations et acronymes</a>
-                    <span>11</span>
                 </div>
             </div>
         </div>
+
+        <!-- Espace blanc -->
+        <div style="padding: 40px;"></div>
 
         <!-- Introduction -->
         <div class="page intro-page">
@@ -527,6 +520,9 @@
                 <span style="font-size: 0.8em; vertical-align: super;">*</span> Les mots suivis d'un astérisque sont définis dans la partie « <a href="#glossaire">Glossaire, abréviations et acronymes</a> »
             </div>
         </div>
+
+        <!-- Espace blanc -->
+        <div style="padding: 40px;"></div>
 
         <!-- QUALI'MES -->
         <div class="page">
@@ -795,38 +791,33 @@
             <div class="toc">
                 <div class="toc-item">
                     <span>Trace 1 : box Vermot - affichage et verrine 4 couleurs</span>
-                    <span>2</span>
                 </div>
                 <div class="toc-item">
                     <span>Trace 2 : page de débogage automatisé</span>
-                    <span>4</span>
                 </div>
                 <div class="toc-item">
                     <span>Trace 3 : écran de paramétrage des états</span>
-                    <span>6</span>
                 </div>
                 <div class="toc-item">
                     <span>Trace 4 : écran Tableau de bord</span>
-                    <span>7</span>
                 </div>
                 <div class="toc-item">
                     <span>Trace 5 : Tables pour intégration des données en provenance de MongoDb</span>
-                    <span>8</span>
                 </div>
                 <div class="toc-item">
                     <span>Trace 6 : paramètres machine</span>
-                    <span>9</span>
                 </div>
                 <div class="toc-item">
                     <span>Trace 7 : écran de recherche des valeurs de paramètres machines</span>
-                    <span>9</span>
                 </div>
                 <div class="toc-item">
                     <span>Trace 8 : écran Planning des contrôles</span>
-                    <span>9</span>
                 </div>
             </div>
         </div>
+
+        <!-- Espace blanc -->
+        <div style="padding: 40px;"></div>
 
         <!-- Glossaire -->
         <div class="page no-number">
@@ -877,6 +868,9 @@
                 <div class="term-definition">: ensemble de lumières installé sur une box pouvant s'allumer et clignoter indépendamment les unes des autres.</div>
             </div>
         </div>
+
+        <!-- Espace blanc -->
+        <div style="padding: 40px;"></div>
 
         <!-- Footer avec navigation -->
         <div class="page no-number">
