@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport d'Alternance - Thomas BOUVAIS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+
+        .cover-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .main-title {
+            font-size: 2.5em;
+            font-weight: 300;
+            margin: 40px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .date-range {
+            font-size: 1.2em;
+            margin-bottom: 60px;
+            opacity: 0.9;
+        }
+
+        .author-info {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .author-name {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .author-details {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .supervisors {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+
+        .supervisor {
+            text-align: center;
+        }
+
+        .supervisor-title {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .supervisor-name {
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .company-name {
+            color: #448DD0;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .page {
+            padding: 40px;
+            min-height: 100vh;
+            page-break-before: always;
+        }
+
+        .page-content {
+            max-width: 100%;
+        }
+
+        h1 {
+            color: #2F5496;
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #448DD0;
+            counter-increment: h1-counter;
+        }
+
+        h1::before {
+            content: counter(h1-counter) " ";
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #2F5496;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            counter-increment: h2-counter;
+            counter-reset: h3-counter;
+        }
+
+        h2::before {
+            content: counter(h1-counter) "." counter(h2-counter) " ";
+            font-weight: bold;
+        }
+
+        h3 {
+            color: #2F5496;
+            font-size: 1.3em;
+            margin: 20px 0 12px 0;
+            counter-increment: h3-counter;
+            counter-reset: h4-counter;
+        }
+
+        h3::before {
+            content: counter(h1-counter) "." counter(h2-counter) "." counter(h3-counter) " ";
+            font-weight: bold;
+        }
+
+        h4 {
+            color: #2F5496;
+            font-size: 1.2em;
+            margin: 18px 0 10px 0;
+            font-style: italic;
+            counter-increment: h4-counter;
+        }
+
+        h4::before {
+            content: counter(h1-counter) "." counter(h2-counter) "." counter(h3-counter) "." counter(h4-counter) " ";
+            font-weight: bold;
+        }
+
+        .title-no-number {
+            color: #2F5496;
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #448DD0;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+            text-indent: 1cm;
+            line-height: 1.8;
+        }
+
+        .no-indent {
+            text-indent: 0;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .toc h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2F5496;
+        }
+
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        .toc-item a {
+            color: #2F5496;
+            text-decoration: none;
+            flex-grow: 1;
+        }
+
+        .toc-item a:hover {
+            color: #448DD0;
+            text-decoration: underline;
+        }
+
+        .toc-level-1 {
+            font-weight: bold;
+            margin-left: 0;
+        }
+
+        .toc-level-2 {
+            margin-left: 20px;
+        }
+
+        .toc-level-3 {
+            margin-left: 40px;
+            font-size: 0.95em;
+        }
+
+        .toc-level-4 {
+            margin-left: 60px;
+            font-size: 0.9em;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 25px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .footnote {
+            font-size: 0.85em;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 30px;
+        }
+
+        .thanks-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .company-info {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-left: 5px solid #448DD0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .performance-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .before-after {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .before-after.before {
+            border-left: 4px solid #dc3545;
+        }
+
+        .before-after.after {
+            border-left: 4px solid #28a745;
+        }
+
+        .skills-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .annexes {
+            background: #e9ecef;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .glossary-term {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .term-name {
+            font-weight: bold;
+            color: #2F5496;
+        }
+
+        .term-definition {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .page {
+                page-break-before: always;
+            }
+        }
+
+        body {
+            counter-reset: h1-counter;
+        }
+
+        h1 {
+            counter-reset: h2-counter;
+        }
+
+        h2 {
+            counter-reset: h3-counter;
+        }
+
+        h3 {
+            counter-reset: h4-counter;
+        }
+
+        .intro-page h1, .conclusion-page h1, .thanks-page h1 {
+            counter-increment: none;
+        }
+
+        .intro-page h1::before, .conclusion-page h1::before, .thanks-page h1::before {
+            content: "";
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page de couverture -->
+        <div class="cover-page">
+            <div class="cover-content">
+                <div class="logo-section">
+                    <img width="307" height="89" src="rapport_fichiers/image001.gif" alt="Logo Qualigest">
+                    <img width="32" height="32" src="rapport_fichiers/image002.gif" alt="Builting Brand Logo">
+                </div>
+
+                <div class="main-title">
+                    Mise au point de <span class="company-name">logiciels de gestion d'entreprise</span>
+                </div>
+
+                <div class="subtitle">RAPPORT D'ALTERNANCE</div>
+                <div class="date-range">Du 16 septembre 2024 au 30 août 2025</div>
+
+                <div class="author-info">
+                    <div class="author-name">Thomas BOUVAIS</div>
+                    <div class="author-details">BUT Informatique, 3ème année</div>
+                    <div style="margin-top: 20px;">
+                        <strong>Entreprise : <span class="company-name">Qualigest</span></strong>
+                    </div>
+                </div>
+
+                <div class="supervisors">
+                    <div class="supervisor">
+                        <div class="supervisor-title">Tuteur entreprise :</div>
+                        <div class="supervisor-name">Nicolas CAZETTE</div>
+                        <div style="font-size: 0.9em; margin-top: 5px;">Président de Qualigest</div>
+                    </div>
+                    <div class="supervisor">
+                        <div class="supervisor-title">Tutrice IUT :</div>
+                        <div class="supervisor-name">Ingrid COUTURIER</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px;">
+                    <img width="132" height="103" src="rapport_fichiers/image005.gif" alt="Logo IUT">
+                    <img width="267" height="107" src="rapport_fichiers/image004.gif" alt="Logo IUT NFC">
+                </div>
+            </div>
+        </div>
+
+        <!-- Page de remerciements -->
+        <div class="page thanks-page">
+            <h1 class="title-no-number">Remerciements</h1>
+            
+            <div class="thanks-section">
+                <p>Cette année d'alternance chez Qualigest a été particulièrement enrichissante, et je tiens à remercier toutes les personnes qui ont contribué à son bon déroulement.</p>
+
+                <p>Je remercie tout particulièrement Monsieur Nicolas CAZETTE, Président de Qualigest et mon tuteur en entreprise, pour la confiance qu'il m'a accordée, ainsi que pour son accueil bienveillant au sein de l'entreprise.</p>
+
+                <p>Je tiens également à exprimer ma reconnaissance à Madame Stéphanie RESS, cheffe de projet, pour son accompagnement technique, sa disponibilité ainsi que la qualité de ses conseils qui m'ont permis de progresser tout au long de cette année.</p>
+
+                <p>Je souhaite aussi remercier Madame Ingrid COUTURIER, ma tutrice à l'IUT, pour son accompagnement, ses conseils et son suivi tout au long de cette année d'alternance.</p>
+
+                <p>De même, je tiens à exprimer toute ma reconnaissance à l'équipe pédagogique de l'IUT, dont l'enseignement m'a fourni les bases essentielles à la réalisation de mon alternance.</p>
+
+                <p>Enfin, je remercie sincèrement toutes les personnes qui ont participé, de près ou de loin, à la réussite humaine et professionnelle de mon année d'alternance, et qui m'ont accompagné durant la rédaction de ce rapport.</p>
+            </div>
+        </div>
+
+        <!-- Table des matières -->
+        <div class="page">
+            <h1 class="title-no-number">Sommaire</h1>
+            
+            <div class="toc">
+                <div class="toc-item toc-level-1">
+                    <a href="#introduction">Introduction</a>
+                    <span>1</span>
+                </div>
+                
+                <div class="toc-item toc-level-1">
+                    <a href="#presentation-entreprise">1. Présentation de l'entreprise</a>
+                    <span>2</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#historique">1.1 Historique et secteur d'activité</a>
+                    <span>2</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#organisation">1.2 Organisation</a>
+                    <span>2</span>
+                </div>
+                
+                <div class="toc-item toc-level-1">
+                    <a href="#cadre-projet">2. Cadre du projet</a>
+                    <span>4</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#presentation-sujet">2.1 Présentation du sujet</a>
+                    <span>4</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#organisation-projet">2.2 Organisation projet</a>
+                    <span>5</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#environnements">2.3 Environnements de développement</a>
+                    <span>5</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#windev">2.3.1 WinDev</a>
+                    <span>5</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#windev-mobile">2.3.2 WinDev Mobile</a>
+                    <span>6</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#gds">2.3.3 GDS (Gestionnaire De Sources)</a>
+                    <span>6</span>
+                </div>
+                
+                <div class="toc-item toc-level-1">
+                    <a href="#sujets-abordes">3. Sujets abordés dans le projet</a>
+                    <span>7</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#qualimes">3.1 QUALI'MES</a>
+                    <span>7</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#presentation-mes">3.1.1 Présentation du logiciel</a>
+                    <span>7</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#debug">3.1.2 Débug</a>
+                    <span>8</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#clignotement">3.1.3 Clignotement verrine</a>
+                    <span>9</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#mongodb">3.1.4 Récupération mongoDB</a>
+                    <span>12</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#spc-mobile">3.2 SPC_mobile</a>
+                    <span>16</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#transfert-image">3.3 Transfert d'image (Joaillerie)</a>
+                    <span>17</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#controle-reception">3.4 Contrôle réception</a>
+                    <span>19</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#spc">3.5 SPC</a>
+                    <span>22</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#joaillerie">3.6 Joaillerie</a>
+                    <span>23</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#optimisations">3.7 Optimisations</a>
+                    <span>25</span>
+                </div>
+                
+                <div class="toc-item toc-level-1">
+                    <a href="#analyse">4. Analyse de l'alternance</a>
+                    <span>30</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#bilan">4.1 Bilan technique et humain</a>
+                    <span>30</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#savoirs">4.2 Savoirs et savoir-faire</a>
+                    <span>30</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#competences">4.3 Compétences et apprentissages critiques</a>
+                    <span>31</span>
+                </div>
+                
+                <div class="toc-item toc-level-1">
+                    <a href="#conclusion">Conclusion</a>
+                    <span>35</span>
+                </div>
+                <div class="toc-item toc-level-1">
+                    <a href="#illustrations">Table des illustrations</a>
+                    <span>36</span>
+                </div>
+                <div class="toc-item toc-level-1">
+                    <a href="#glossaire">Glossaire, abréviations et acronymes</a>
+                    <span>37</span>
+                </div>
+                <div class="toc-item toc-level-1">
+                    <a href="#sitographie">Sitographie</a>
+                    <span>39</span>
+                </div>
+                <div class="toc-item toc-level-1">
+                    <a href="#annexes">Table des annexes</a>
+                    <span>40</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="page intro-page">
+            <h1 class="title-no-number" id="introduction">Introduction</h1>
+            
+            <p>Dans un contexte industriel en perpétuelle évolution, la qualité des produits et des services occupe une place centrale dans la compétitivité des entreprises. Face à l'intensification de la concurrence, aux exigences réglementaires et aux attentes croissantes des clients, la mise en place de processus de contrôle et d'amélioration continue de la qualité est devenue un levier stratégique incontournable. Les solutions logicielles de gestion et de suivi qualité constituent aujourd'hui un atout majeur pour garantir fiabilité, traçabilité et conformité.</p>
+
+            <p>Qualigest, entreprise spécialisée dans les logiciels de gestion et de contrôle qualité, s'inscrit pleinement dans cette dynamique. Elle conçoit et maintient des logiciels permettant à ses clients de suivre, contrôler et améliorer leurs processus qualité.</p>
+
+            <p>En tant qu'alternant au sein de l'équipe de développement logiciel, j'ai eu pour mission de contribuer à la maintenance et à l'évolution de ces ERP<span style="font-size: 0.8em; vertical-align: super;">*</span> existants, ainsi qu'à la mise en place de nouvelles solutions mobiles.</p>
+
+            <p>Dans un premier temps, je présenterai Qualigest, son secteur d'activité ainsi que son organisation. Je continuerai en détaillant les différentes missions qui m'ont été confiées et exposerai mes réalisations en lien avec ces sujets. Enfin, je terminerai par une analyse personnelle des compétences et enseignements que j'ai retirés de cette expérience.</p>
+            
+            <div class="footnote">
+                <span style="font-size: 0.8em; vertical-align: super;">*</span> Les mots suivis d'un astérisque sont définis dans la partie « <a href="#glossaire">Glossaire, abréviations et acronymes</a> »
+            </div>
+        </div>
+
+        <!-- 1. Présentation de l'entreprise -->
+        <div class="page">
+            <h1 id="presentation-entreprise">Présentation de l'entreprise</h1>
+
+            <h2 id="historique">Historique et secteur d'activité</h2>
+            
+            <p>Fondée en 1987, Qualigest est une entreprise implantée à Montbéliard, dans le département du Doubs (25200), au sein de l'hôtel tertiaire Numerica, avenue Léon Blum.</p>
+
+            <p>PME<span style="font-size: 0.8em; vertical-align: super;">*</span> dotée du statut de Société par Actions Simplifiée (SAS), Qualigest exerce dans le domaine de la programmation informatique, et s'est spécialisée dans le développement de logiciels de gestion et de contrôle qualité adaptés à l'industrie.</p>
+
+            <p>Initialement centrée sur l'horlogerie et le luxe, l'entreprise a diversifié ses domaines d'intervention pour répondre aux exigences de multiples secteurs industriels tels que l'aéronautique, l'automobile, la santé et la micro-mécanique.</p>
+
+            <p>Qualigest se distingue par ses solutions, conçues et développées 100% en interne, depuis son site de Montbéliard. Cette organisation lui garantit une grande réactivité et une adaptation rapide aux besoins spécifiques de ses clients.</p>
+
+            <h2 id="organisation">Organisation</h2>
+            
+            <p>L'organisation de Qualigest, telle que je l'ai connue pendant la majeure partie de mon année d'alternance, comprenait huit personnes (cf. Illustration 1) en dehors des stagiaires et alternants.</p>
+
+            <p>Bien que cette organisation ait évolué vers la fin de mon alternance, je la décris ici comme si elle était restée stable tout au long de l'année.</p>
+
+            <p>La direction est assurée par Monsieur Nicolas CAZETTE, président de l'entreprise.</p>
+
+            <p>Lionnel GUENIAT, est en charge du développement commercial.</p>
+
+            <p>Deux chefs de projet, Stéphanie RESS et Nicolas COURVOISIER, encadrent une équipe de quatre développeurs, Yoann DESTRAS, Edgar TAVARES, Jérémy THIEBAUD et Aurélien VANOOTEGEM.</p>
+
+            <p>Pour ma part, j'exerce la fonction de développeur, principalement sous la responsabilité de Stéphanie RESS.</p>
+
+            <div class="image-container">
+                <img width="605" height="580" src="rapport_fichiers/image006.gif" alt="Organigramme de la société Qualigest">
+                <div class="image-caption">
+                    <strong>Illustration 1 :</strong> Organigramme de la société Qualigest
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Cadre du projet -->
+        <div class="page">
+            <h1 id="cadre-projet">Cadre du projet</h1>
+
+            <h2 id="presentation-sujet">Présentation du sujet</h2>
+            
+            <p>Qualigest est une société spécialisée dans la conception et l'implémentation de solutions logicielles dédiées au contrôle qualité. Elle accompagne de nombreux clients en leur offrant des outils de suivi et de contrôle en temps réel, depuis la réception des matières premières jusqu'aux étapes de production.</p>
+
+            <p>Pour rester compétitive, Qualigest travaille à l'évolution constante de ses logiciels, en intégrant de nouvelles fonctionnalités et en assurant une maintenance réactive et efficace, gage de fidélisation et d'acquisition de nouveaux clients.</p>
+
+            <p>Durant mon année d'alternance, j'ai eu pour mission de participer à la maintenance et au développement de ces logiciels en effectuant la correction de bugs, en optimisant l'existant, et en développant de nouvelles fonctionnalités et applications mobiles. Mon travail a principalement concerné les logiciels MES<span style="font-size: 0.8em; vertical-align: super;">*</span> et Contrôle réception, tout en couvrant un certain nombre d'autres logiciels (cf. Illustration 2).</p>
+
+            <p>Dans ce rapport, j'ai choisi de présenter les réalisations les plus significatives menées au cours de cette année, sélectionnées en fonction de leur importance et de leur diversité technique afin d'illustrer la variété des problématiques rencontrées et des solutions mises en œuvre.</p>
+
+            <div class="image-container">
+                <img width="605" height="302" src="rapport_fichiers/image007.gif" alt="Représentation graphique du temps passé sur les différents logiciels">
+                <div class="image-caption">
+                    <strong>Illustration 2 :</strong> Représentation graphique du temps passé sur les différents logiciels
+                </div>
+            </div>
+
+            <h2 id="organisation-projet">Organisation projet</h2>
+            
+            <p>La gestion de l'activité est assurée par un Centre de suivi de projet (cf. Illustration 3), qui regroupe la planification et le suivi des tâches de développement et de maintenance pour l'ensemble des projets, de l'équipe de développement et des chefs de projet.</p>
+
+            <p>Une réunion d'équipe hebdomadaire sert à répartir les sujets et les tâches pour la semaine, complétée, selon les besoins, par des réunions dédiées à certains projets.</p>
+
+            <div class="image-container">
+                <img width="604" height="358" src="rapport_fichiers/image008.gif" alt="Centre de Suivi de Projets">
+                <div class="image-caption">
+                    <strong>Illustration 3 :</strong> Centre de Suivi de Projets
+                </div>
+            </div>
+
+            <h2 id="environnements">Environnements de développement</h2>
+
+            <h3 id="windev">WinDev</h3>
+            
+            <div class="highlight-box">
+                <p>WinDev est un Atelier de Génie Logiciel (AGL) complet conçu par PC SOFT, permettant de développer rapidement des applications natives pour Windows.</p>
+
+                <p>Il offre un IDE<span style="font-size: 0.8em; vertical-align: super;">*</span> riche : éditeurs visuels d'analyse de données, d'UIs<span style="font-size: 0.8em; vertical-align: super;">*</span>, de requêtes SQL<span style="font-size: 0.8em; vertical-align: super;">*</span>, de rapports, d'aide, de tests automatisés, UML<span style="font-size: 0.8em; vertical-align: super;">*</span>, code, télémétrie, conformités RGPD<span style="font-size: 0.8em; vertical-align: super;">*</span>, ...</p>
+
+                <p>Le langage employé est le WLanguage, qui combine programmation procédurale et orientée objet, avec une syntaxe simple en français ou en anglais.</p>
+
+                <p>WinDev inclut HFSQL<span style="font-size: 0.8em; vertical-align: super;">*</span>, sa base de données intégrée disponible en mode embarqué, client/serveur, réseau, mobile et cloud. Il permet aussi l'accès à d'autres types de bases de données (Oracle, MySQL, PostgreSQL, SQL Server, etc.).</p>
+
+                <p>L'IDE<span style="font-size: 0.8em; vertical-align: super;">*</span> supporte le test et le débogage complet du projet, y compris via un mode émulation/débug.</p>
+            </div>
+
+            <h3 id="windev-mobile">WinDev Mobile</h3>
+            
+            <div class="highlight-box">
+                <p>WinDev Mobile est un environnement de développement sous Windows, dérivé de WinDev, conçu pour créer des applications mobiles natives pour Android et iOS (iPhone/iPad). Il utilise aussi le WLanguage, tout en limitant les fonctions spécifiques à Windows.</p>
+
+                <p>Il offre des fonctionnalités de débogage avancé : simulation complète sur PC via émulateur, ou débogage direct sur le périphérique sans nécessiter d'installation supplémentaire.</p>
+
+                <p>Il supporte entièrement toutes les résolutions d'écran, DPI<span style="font-size: 0.8em; vertical-align: super;">*</span>, orientations (paysage/portrait) et accès aux API<span style="font-size: 0.8em; vertical-align: super;">*</span> propres aux plateformes (contacts, scanner, notifications…).</p>
+
+                <p>De plus, WinDev Mobile partage l'environnement de développement commun (éditeur de code, UI<span style="font-size: 0.8em; vertical-align: super;">*</span> designer, cycle d'analyse et composants) avec WinDev.</p>
+            </div>
+
+            <h3 id="gds">GDS (Gestionnaire De Sources)</h3>
+            
+            <div class="highlight-box">
+                <p>Le GDS (Gestionnaire de Sources) est un système de versioning intégré aux environnements WinDev, WebDev et WinDev Mobile, conçu pour faciliter le développement collaboratif. Il centralise tous les éléments projets — fenêtres, classes, procédures, états, analyses, etc. — dans une base HFSQL<span style="font-size: 0.8em; vertical-align: super;">*</span> partagée, accessible en local ou à distance. Le GDS assure l'historique des modifications, la gestion de branches, et l'automatisation des sauvegardes.</p>
+            </div>
+        </div>
+
+        <!-- 3. Sujets abordés dans le projet -->
+        <div class="page">
+            <h1 id="sujets-abordes">Sujets abordés dans le projet</h1>
+
+            <h2 id="qualimes">QUALI'MES</h2>
+
+            <h3 id="presentation-mes">Présentation du logiciel</h3>
+            
+            <p>Un logiciel MES (Manufacturing Execution System) est un outil de gestion et de pilotage des opérations de production en temps réel. Il permet la collecte des données de production des machines via la scrutation ou l'importation de fichiers afin d'optimiser l'exécution des OFs (Ordre de Fabrication) et garantir une traçabilité complète de chaque opération.</p>
+
+            <p>QUALI'MES, le logiciel MES développé par Qualigest, assure non seulement la collecte des données issues des machines via des box<span style="font-size: 0.8em; vertical-align: super;">*</span> (cf. Illustration 4), leur affichage dans un tableau de bord, mais permet également de transmettre des informations vers les box en tenant compte des paramètres configurés et des calculs effectués.</p>
+
+            <div class="image-container">
+                <img width="596" height="386" src="rapport_fichiers/image009.gif" alt="box Vermot - affichage et verrine 4 couleurs">
+                <div class="image-caption">
+                    <strong>Illustration 4 :</strong> box Vermot - affichage et verrine 4 couleurs
+                </div>
+            </div>
+
+            <h3 id="debug">Débug</h3>
+
+            <h4>Cahier des charges</h4>
+            
+            <p>À mon arrivée sur le projet MES, la priorité a été fixée sur la résolution de nombreux bugs avant toute évolution du logiciel. Mes premières missions ont donc porté sur le débogage.</p>
+
+            <p>En effet, il avait été constaté qu'un certain nombre de données sur les box du client ne correspondaient pas aux données présentes en base de données et affichées au niveau des IHMs (Interface Homme Machine).</p>
+
+            <p>Il m'a donc été demandé d'analyser et résoudre ces problèmes.</p>
+
+            <h4>Réalisations</h4>
+            
+            <p>J'ai rapidement constaté des dysfonctionnements importants dans la base de données, notamment :</p>
+
+            <ul>
+                <li>L'activation simultanée de plusieurs opérations sur une même machine ;</li>
+                <li>Des doublons d'opérations sur différentes machines ;</li>
+                <li>Des incohérences entre l'état des opérations dans le système et la réalité observée chez le client ;</li>
+                <li>Des calculs erronés au niveau des dates des OFs.</li>
+            </ul>
+
+            <p>Certaines de ces erreurs résultaient d'usages imprévus du MES, comme la clôture puis la réouverture d'opérations ou encore la migration d'une opération d'une machine à une autre sans mise à jour du numéro d'OF associé.</p>
+
+            <p>Dans ce contexte, mes interventions initiales ont consisté à identifier et corriger ces anomalies en passant au crible toutes les machines et opérations pour repérer les incohérences, afin de remonter jusqu'à la partie du code à l'origine des problèmes.</p>
+
+            <p>Pour optimiser ce processus fastidieux nécessitant un recensement manuel, j'ai alors pris l'initiative de développer une page de débogage automatisé (cf. Illustration 5). Cette nouvelle interface a permis de vérifier en temps réel l'intégralité des opérations, d'identifier rapidement les erreurs existantes, et de faciliter le suivi des corrections. Elle a ensuite été intégrée au logiciel MES puis enrichie progressivement pour accompagner l'intégration de nouvelles fonctionnalités.</p>
+
+            <div class="image-container">
+                <img width="605" height="234" src="rapport_fichiers/image010.gif" alt="page de débogage automatisé">
+                <div class="image-caption">
+                    <strong>Illustration 5 :</strong> page de débogage automatisé
+                </div>
+            </div>
+
+            <h3 id="clignotement">Clignotement verrine</h3>
+
+            <h4>Cahier des charges</h4>
+            
+            <p>Mettre en œuvre un système de détection de nouvelles alertes machines, ainsi que leur affichage simultané sur la verrine<span style="font-size: 0.8em; vertical-align: super;">*</span> de la box<span style="font-size: 0.8em; vertical-align: super;">*</span> machine et sur l'interface logicielle, au niveau du tableau de bord et de la page de débogage.</p>
+
+            <p>La verrine installée sur la machine comporte quatre lumières (1 verte, 1 rouge, 1 bleu, 1 jaune) pouvant s'allumer et clignoter indépendamment les unes des autres. Aujourd'hui, elle est utilisée pour signaler certains états de fonctionnement tel que le fait que la machine soit active (lumière verte fixe), arrêtée (lumière rouge fixe) ou que la cadence de production est trop faible ou trop élevée (lumière verte clignotante).</p>
+
+            <p>Les nouvelles alertes à détecter sont :</p>
+
+            <ul>
+                <li>Pas d'OF actif ⇒ donné par la box</li>
+                <li>Alerte affutage ⇒ donné par la box</li>
+                <li>cadence de production trop faible ou trop élevée avec un facteur paramétrable</li>
+                <li>Variation trop grande de la vitesse de production</li>
+            </ul>
+
+            <p>Ces nouvelles alertes doivent être signalées par un clignotement bleu au niveau de la verrine, du tableau de bord et de la page de débug. Toutefois, le clignotement bleu ne doit être pris en compte que lorsque les états suivants de la machine sont sélectionnés :</p>
+
+            <ul>
+                <li>Pas d'OF actif</li>
+                <li>Machine en chauffe</li>
+                <li>Machine en production</li>
+                <li>Machine à l'arrêt</li>
+                <li>Machine en cours de réglage</li>
+                <li>Machine en cours de ravitaillement</li>
+                <li>Autre</li>
+            </ul>
+
+            <h4>Réalisations</h4>
+            
+            <p>Pour ce développement, j'ai commencé par analyser le format des données émises par les box afin d'identifier et décoder les informations contenues dans une trame. Lors de la scrutation, des sockets<span style="font-size: 0.8em; vertical-align: super;">*</span> sont créées pour communiquer individuellement avec chaque box, ce qui me permet d'extraire précisément les octets ciblés grâce à la structure de la trame, puis de stocker les données en base si besoin.</p>
+
+            <p>Une fois les informations techniques analysées, j'ai développé plusieurs fonctionnalités visant à améliorer l'intégration des signaux lumineux dans le système.</p>
+
+            <p>Tout d'abord, j'ai procédé à un ajustement de la base de données : auparavant, le clignotement vert était uniquement géré localement par la box, sans répercussion en base ni sur l'interface utilisateur. Pour corriger cela, j'ai ajouté une colonne dans la table des machines permettant de stocker l'état de clignotement (0 pour aucun, 1 pour vert, 2 pour bleu).</p>
+
+            <p>En parallèle, j'ai conçu un écran dédié au paramétrage de ces états (cf. Illustration 6) et développé les fonctions de calcul associées. Concernant l'alerte de "variation trop grande de la vitesse de production", le cahier des charges initial prévoyait une comparaison sur 3 valeurs, mais j'ai proposé une solution plus flexible s'appuyant sur les <em>n</em> dernières valeurs.</p>
+
+            <div class="image-container">
+                <img width="326" height="221" src="rapport_fichiers/image011.gif" alt="écran de paramétrage des états">
+                <div class="image-caption">
+                    <strong>Illustration 6 :</strong> écran de paramétrage des états
+                </div>
+            </div>
+
+            <p>J'ai également modifié le tableau de bord (cf. Illustration 7) pour intégrer ces nouvelles fonctionnalités. La complexité de ce développement réside notamment dans la prise en compte des contraintes suivantes :</p>
+
+            <ul>
+                <li>La mise à jour automatique toutes les minutes selon les données présentes en base via une requête asynchrone afin de limiter les ralentissements, en particulier perceptibles lors du clignotement.</li>
+                <li>la gestion du statut de chaque box via un ping, opération coûteuse en temps et nécessitant l'utilisation du multithreading</li>
+                <li>L'affichage en temps réel du clignotement.</li>
+            </ul>
+
+            <p>Par ailleurs, j'ai aussi modifié la page de débug pour intégrer ces nouveaux paramètres, avec les mêmes contraintes techniques que sur le tableau de bord.</p>
+
+            <p>J'ai terminé en mettant en place l'envoi du signal de clignotement bleu à la box, pour que l'affichage corresponde bien aux réglages faits dans l'IHM<span style="font-size: 0.8em; vertical-align: super;">*</span>.</p>
+
+            <div class="image-container">
+                <img width="605" height="232" src="rapport_fichiers/image012.gif" alt="écran Tableau de bord">
+                <div class="image-caption">
+                    <strong>Illustration 7 :</strong> écran Tableau de bord
+                </div>
+            </div>
+
+            <h3 id="mongodb">Récupération mongoDB</h3>
+
+            <h4>Cahier des charges</h4>
+            
+            <p>Le client possède un outil externe lui permettant d'enregistrer les paramètres machine (Nombre de pièces, température du moteur, température du codeur et état de la machine) au sein d'une base de données MongoDb.</p>
+
+            <p>Le client souhaite que ces données soient visibles au sein du logiciel QUALI'MES.</p>
+
+            <h4>Réalisations</h4>
+            
+            <p>Un aspect important de mon travail a été la récupération des données depuis une base MongoDB gérée par le client.</p>
+
+            <p>Dans un premier temps j'ai développé la fonction de récupération des données contenues dans une base MongoDb située chez le client. Lors des phases de test et de développement j'ai dû passer par un VPN pour pouvoir accéder directement à la base de données du client. J'ai établi une connexion à la base et récupéré les données nécessaires au format JSON.</p>
+
+            <p>Pour enregistrer les données dans la base du logiciel MES, j'ai créé plusieurs tables (cf. Illustration 8). Les tables « opérations » et « machines » existaient déjà et j'ai ajouté les tables operation_param_machine, valeurs_param_machine, machines_parametre_machine et parametre_machine, ainsi que les liens associés.</p>
+
+            <div class="image-container">
+                <img width="605" height="537" src="rapport_fichiers/image013.jpg" alt="Tables pour intégration des données en provenance de MongoDb">
+                <div class="image-caption">
+                    <strong>Illustration 8 :</strong> Tables pour intégration des données en provenance de MongoDb
+                </div>
+            </div>
+
+            <p>Il est à noter que la table parametre_machine permet de paramétrer les requêtes directement en base pour plus d'adaptabilité, ce qui permet de ne pas avoir à refaire un exécutable à chaque changement et offre la possibilité de l'utiliser pour des clients futurs sans faire de modifications dans le code.</p>
+
+            <p>Afin de pouvoir renseigner cette table parametre_machine, j'ai créé une interface (cf. Illustration 9) permettant de gérer les informations.</p>
+
+            <div class="image-container">
+                <img width="562" height="363" src="rapport_fichiers/image014.gif" alt="paramètres machine">
+                <div class="image-caption">
+                    <strong>Illustration 9 :</strong> paramètres machine
+                </div>
+            </div>
+
+            <p>J'ai aussi créé une page de recherche des informations liées aux valeurs des paramètres machines (cf. Illustration 10) avec la possibilité de filtrer les données sur les dates, le type d'information, la machine et l'OF.</p>
+
+            <div class="image-container">
+                <img width="564" height="336" src="rapport_fichiers/image015.gif" alt="écran de recherche des valeurs de paramètres machines">
+                <div class="image-caption">
+                    <strong>Illustration 10 :</strong> écran de recherche des valeurs de paramètres machines
+                </div>
+            </div>
+
+            <p>Enfin, j'ai intégré à l'écran de planning des contrôles (cf. Illustration 11) le choix du paramètre machine à afficher et l'affichage des données liées à ce paramètre machine.</p>
+
+            <div class="image-container">
+                <img width="605" height="359" src="rapport_fichiers/image016.gif" alt="écran Planning des contrôles">
+                <div class="image-caption">
+                    <strong>Illustration 11 :</strong> écran Planning des contrôles
+                </div>
+            </div>
+
+            <p>Une fois les développements effectués, j'ai présenté les résultats au client puis j'ai installé cette nouvelle version en production.</p>
+
+            <h2 id="spc-mobile">SPC_mobile</h2>
+
+            <h3>Cahier des charges</h3>
+            
+            <p>Afin de faciliter la collecte de mesures de contrôles dans l'atelier et d'éviter de devoir regagner son poste à chaque fois, le client souhaite disposer d'une solution permettant d'enregistrer les données sur place et de les transmettre ultérieurement au logiciel SPC (cf. section SPC). Le choix du support de collecte de données s'est porté sur un smartphone Android.</p>
+
+            <h3>Réalisations</h3>
+            
+            <p>J'ai développé une application mobile en partant de zéro avec WinDev Mobile. J'ai conçu différents écrans (cf. Illustration 12) qui permettent de trier, de sélectionner un contrôle et d'ajouter des mesures pour chaque attribut et critère. J'ai aussi implémenté une fonction qui envoie les mesures à la base de données du SPC, où elles sont ensuite intégrées dans les tables via une tâche planifiée. Par rapport au besoin initial, j'ai ajouté la possibilité de saisir des mesures sur une partie seulement du contrôle.</p>
+
+            <div class="image-container">
+                <img width="605" height="323" src="rapport_fichiers/image017.gif" alt="écrans SPC_mobile">
+                <div class="image-caption">
+                    <strong>Illustration 12:</strong> écrans SPC_mobile
+                </div>
+            </div>
+
+            <p>Durant le développement, j'ai rencontré des différences significatives entre le simulateur WinDev et les appareils Android réels, ce qui m'a contraint à réaliser de nombreux ajustements et corrections.</p>
+
+            <p>Les principales difficultés que j'ai rencontrées sont liées au positionnement de la saisie. En effet, le simulateur ne reproduisant pas fidèlement certains comportements natifs d'Android tels que le focus des champs ou la gestion du clavier, j'ai dû effectuer des tests systématiques sur des appareils physiques pour garantir la fiabilité de l'application.</p>
+
+            <h2 id="transfert-image">Transfert d'image (Joaillerie)</h2>
+
+            <h3>Cahier des charges</h3>
+            
+            <p>Le client souhaite pouvoir transférer facilement des images d'un téléphone IOS vers le logiciel Joaillerie.</p>
+
+            <h3>Réalisations</h3>
+            
+            <p>Pour pouvoir transférer des images d'un téléphone IOS vers le logiciel Joaillerie, j'ai d'abord développé une nouvelle fenêtre dans le logiciel qui permet à l'utilisateur de demander à récupérer une image depuis son smartphone, puis une application mobile permettant la sélection et l'envoi de cette image.</p>
+
+            <p>Lorsque l'utilisateur demande à intégrer une photo, un QR code est généré. Lorsque l'utilisateur scanne ce QR code avec son smartphone, la galerie d'image s'ouvre afin de sélectionner la photo qui sera envoyée via un protocole HTTP<span style="font-size: 0.8em; vertical-align: super;">*</span>. L'utilisateur peut modifier le nom de l'image et indique où il souhaite l'enregistrer (cf. Illustration 13).</p>
+
+            <div class="image-container">
+                <img width="604" height="326" src="rapport_fichiers/image018.gif" alt="écran d'import d'image dans le logiciel Joaillerie">
+                <div class="image-caption">
+                    <strong>Illustration 13:</strong> écran d'import d'image dans le logiciel Joaillerie
+                </div>
+            </div>
+
+            <p>Une fois l'application mobile créée, il est nécessaire de la mettre sur l'Apple Store, ce qui nécessite une démarche complexe :</p>
+
+            <ul>
+                <li>Génération d'un projet Xcode<span style="font-size: 0.8em; vertical-align: super;">*</span> via WinDev</li>
+                <li>Création d'un compte développeur Apple payant</li>
+                <li>Génération d'un certificat d'authentification Apple permettant de signer numériquement l'application afin qu'Apple puisse vérifier son authenticité et garantir qu'elle respecte leurs conditions de sécurité.</li>
+                <li>Compilation du projet Xcode sur un PC Apple.</li>
+            </ul>
+
+            <p class="no-indent">J'ai rencontré de nombreuses difficultés à cette étape notamment :</p>
+
+            <ul>
+                <li>Installation d'une ancienne version de Xcode sur un MAC trop âgé, qui ne permettait pas de compiler le projet</li>
+                <li>Recherche d'un MAC plus récent avec version de Xcode plus récente, ce qui a permis de compiler. Toutefois, cette compilation n'a fonctionné que sur l'émulateur, pas sur le téléphone.</li>
+                <li>Recherche d'un nouveau MAC encore plus récent permettant d'installer une version de Xcode qui a enfin permis de générer une application fonctionnant à la fois sur l'émulateur et sur un téléphone.</li>
+            </ul>
+
+            <ul>
+                <li>Test du projet compilé sur un émulateur et un Iphone</li>
+                <li>Première soumission de l'application à Apple via Xcode pour vérification automatique de la conformité de l'application. Cela génère un build de l'application dans le compte</li>
+                <li>Renseignement du formulaire contenant les informations nécessaires à sa présentation sur l'Apple Store (nom et description de l'application, nom de la société, captures d'écran, informations liées à la confidentialité, build de l'application, …)</li>
+                <li>Seconde soumission de l'application à Apple pour vérification approfondie. Ce processus peut prendre plusieurs jours à plusieurs semaines (en attente de validation).</li>
+            </ul>
+
+            <p>Le processus de développement d'une application IOS étant complexe et n'ayant jamais été réalisée au sein de Qualigest, j'ai écrit une documentation à destination des autres développeurs expliquant les différentes étapes à suivre pour générer un projet IOS.</p>
+        </div>
+
+        <!-- 4. Contrôle réception -->
+        <div class="page">
+            <h2 id="controle-reception">Contrôle réception</h2>
+
+            <h3>Présentation du logiciel</h3>
+            
+            <p>L'application « Contrôle réception » permet d'assurer le suivi et la traçabilité des opérations de réception de marchandises. Elle permet le contrôle qualitatif et quantitatif des produits livrés en comparant les références prévues aux éléments effectivement reçus. Les utilisateurs peuvent enregistrer les écarts, signaler les non-conformités, générer des rapports d'inspection et archiver les contrôles effectués.</p>
+
+            <h3>Cahier des charges</h3>
+            
+            <p>Correction de l'état « Procédure de contrôle (PC) » qui présente des problèmes de pagination.</p>
+
+            <h3>Réalisations</h3>
+            
+            <p>Lorsque l'on m'a demandé de corriger l'état « Procédure de contrôle (PC) » qui présentait des problèmes de pagination (cf. Illustration 14), j'ai d'abord essayé de corriger le code existant. Toutefois, après plusieurs essais infructueux j'ai décidé de refaire complètement le développement de cet état, ce qui m'a permis d'arriver au résultat attendu (cf. Illustration 15).</p>
+
+            <p>Bien que cela n'ait pas été initialement prévu, la refonte complète de cet état m'a permis d'apprendre à en concevoir un de A à Z, alors que jusque-là je n'avais travaillé que sur de légères évolutions d'états déjà existants.</p>
+
+            <div class="performance-comparison">
+                <div class="before-after before">
+                    <h4>Avant - Problèmes de pagination</h4>
+                    <img width="585" height="580" src="rapport_fichiers/image019.gif" alt="état d'origine présentant des problèmes de pagination">
+                    <div class="image-caption">
+                        <strong>Illustration 14 :</strong> état d'origine présentant des problèmes de pagination
+                    </div>
+                </div><BR>
+                <div class="before-after after">
+                    <h4>Après - Pagination corrigée</h4>
+                    <img width="605" height="603" src="rapport_fichiers/image020.gif" alt="état corrigé ne présentant plus de problèmes de pagination">
+                    <div class="image-caption">
+                        <strong>Illustration 15 :</strong> état corrigé ne présentant plus de problèmes de pagination
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="spc">SPC</h2>
+
+            <h3>Présentation du logiciel</h3>
+            
+            <p>Le logiciel SPC (Statistical Process Control) vise à assurer le suivi et le contrôle des différents processus de production. Il permet de surveiller en temps réel les indicateurs de qualité concernant les matières premières, les produits en cours de fabrication et les produits finis, ainsi que les paramètres de fabrication. Il s'appuie sur l'utilisation d'outils statistiques afin de détecter de manière précoce les écarts par rapport aux niveaux de qualité attendus.</p>
+
+            <h3>Cahier des charges</h3>
+            
+            <p>Intégrer au logiciel SPC la fonctionnalité existante dans le logiciel « Contrôle réception » permettant de rechercher dans l'ensemble de la base de données les chemins de fichiers enregistrés et les modifier.</p>
+
+            <h3>Réalisations</h3>
+            
+            <p>Lorsque j'ai commencé à étudier la fonctionnalité existante à intégrer à SPC, je me suis rendu compte que Le code initial, chargé de récupérer et modifier les chemins, comportait des boucles écrites en dur pour chaque table ou rubrique pouvant contenir un chemin.</p>
+
+            <p>Comme il s'agissait d'un autre logiciel, la base de données utilisée différait de l'existante. Plutôt que de reproduire le même schéma en adaptant manuellement chaque table, j'ai choisi de repenser entièrement la structure du code.<br>
+            La nouvelle version permet de définir une seule fois, dans un tableau, la liste des tables et rubriques concernées. Le reste du traitement est automatisé, offrant ainsi une meilleure flexibilité en cas de modification de la base et facilitant l'intégration dans d'autres logiciels si nécessaire. Lors de cette refonte j'ai également ajouté un filtre par table (cf. Illustration 16), fonctionnalité absente de l'ancienne version.</p>
+
+            <p>Le principal compromis concerne cependant les performances. En effet, la liste des tables et colonnes n'étant pas connue à l'avance, j'ai utilisé des indirections (variables générées dynamiquement à partir de chaînes de caractères), ce qui entraîne une exécution plus lente. Cependant, cette fonctionnalité n'étant pas utilisée dans un contexte temps réel, ce compromis sur les performances est tout à fait acceptable au regard des avantages qu'elle procure.</p>
+
+            <div class="image-container">
+                <img width="605" height="359" src="rapport_fichiers/image021.gif" alt="écran de recherche et modification des chemins">
+                <div class="image-caption">
+                    <strong>Illustration 16 :</strong> écran de recherche et modification des chemins
+                </div>
+            </div>
+
+            <h2 id="joaillerie">Joaillerie</h2>
+
+            <h3>Cahier des charges</h3>
+            
+            <p>Pour utiliser le logiciel Joaillerie, une licence est requise. La gestion des licences est assurée dans la base de données du logiciel via un système de verrouillage et de déverrouillage. Le nombre de licences simultanées dont dispose le client est limité.</p>
+
+            <p>Le logiciel intègre un système de chargement/déchargement permettant de rapatrier une partie de la base de données en local afin de fonctionner en mode portable, sans connexion.</p>
+
+            <p>Lorsqu'un utilisateur active le mode « hors connexion », la licence est temporairement attribuée à son poste.</p>
+
+            <p>À la sortie de ce mode, la licence doit être restituée et redevient disponible.</p>
+
+            <h3>Réalisations</h3>
+            
+            <p>Au niveau de la fonctionnalité de chargement/déchargement des informations de la base de données, j'ai ajouté la gestion de l'attribution de la clé de licence en local et sa restitution (cf. Illustration 17). J'ai aussi mis en place un bouton permettant d'attribuer une clé de licence en local en mode hors connexion sans avoir à exécuter le chargement/déchargement des données.</p>
+
+            <p>La gestion des licences constitue un pilier essentiel de la sécurité logicielle.<br>
+            Ce mécanisme doit fonctionner de manière fiable, sans interruption, et éviter toute attribution erronée de licence au client ou tout blocage injustifié.</p>
+
+            <p>Le fait que ce processus critique m'ait été confié, témoigne de la confiance portée à mes compétences et à la qualité de mon travail.</p>
+
+            <div class="image-container">
+                <img width="605" height="361" src="rapport_fichiers/image022.gif" alt="écran principal du logiciel Joaillerie">
+                <div class="image-caption">
+                    <strong>Illustration 17 :</strong> écran principal du logiciel Joaillerie
+                </div>
+            </div>
+
+            <h2 id="optimisations">Optimisations</h2>
+
+            <h3>Optimisation initiale à la demande du client</h3>
+            
+            <p>Le client s'étant plaint de lenteurs, il m'a été demandé d'optimiser la fenêtre du planning de production standard, qui est beaucoup trop lente.</p>
+
+            <p>Pour réaliser cette optimisation, j'ai commencé à chercher dans WinDev quels outils étaient à ma disposition. J'ai trouvé l'analyseur de performances qui permet de répertorier le nombre d'appels et le temps d'exécution moyen de chaque fonction.</p>
+
+            <p>J'ai donc utilisé l'analyseur de performance pour détecter quelles étaient les fonctions les plus chronophages lors de l'affichage de la fenêtre du planning de production standard. J'ai obtenu 4 fonctions qui à elles seules représentaient 85% du temps d'exécution total (cf. Illustration 18), sur lesquelles je me suis donc focalisé.</p>
+
+            <p>En analysant le code de ces fonctions j'ai relevé les problématiques suivantes :</p>
+
+            <ul>
+                <li><strong>Boucle sur la lecture en base de paramètres plusieurs milliers de fois</strong>
+                    <br>→ J'effectue la lecture des paramètres une seule fois, j'enregistre leur valeur, et je remets cette valeur à jour uniquement lorsque cela est nécessaire.</li>
+                <li><strong>Appels multiples d'initialisations à tort (Combos)</strong></li>
+                <li><strong>Boucles sur des lectures uniques</strong>
+                    <br>→ Remplacé par des requêtes SQL</li>
+            </ul>
+
+            <p>Grâce à l'optimisation de ces fonctions, le temps d'affichage de cette fenêtre a été divisé par 4 (cf. Illustration 19).</p>
+
+            <div class="performance-comparison">
+                <div class="before-after before">
+                    <h4>Avant optimisation</h4>
+                    <img width="605" height="300" src="rapport_fichiers/image023.gif" alt="temps d'exécution avant optimisation">
+                    <div class="image-caption">
+                        <strong>Illustration 18 :</strong> temps d'exécution de l'affichage de la fenêtre du planning de production standard avant optimisation
+                    </div>
+                </div><BR>
+                <div class="before-after after">
+                    <h4>Après optimisation - ÷4</h4>
+                    <img width="605" height="276" src="rapport_fichiers/image024.gif" alt="temps d'exécution après optimisation">
+                    <div class="image-caption">
+                        <strong>Illustration 19 :</strong> temps d'exécution de l'affichage de la fenêtre du planning de production standard après optimisation
+                    </div>
+                </div>
+            </div>
+
+            <h3>Initiatives personnelles d'optimisations</h3>
+            
+            <p>Suite à la première optimisation réalisée (cf. paragraphe précédent), chaque fois que j'ai constaté des lenteurs dans les logiciels, j'ai pris l'initiative d'appliquer le même processus d'analyse afin d'en identifier les causes et, si possible, d'améliorer le temps d'exécution.</p>
+
+            <p>J'ai, entre autres, optimisé l'affichage d'un planning du logiciel MES pour lequel j'ai divisé les temps d'exécution par 3 (cf. Illustration 20 et Illustration 21), ainsi que la recherche des tests labo dans le logiciel Contrôle réception dont le temps d'exécution a été divisé par 10 (cf. Illustration 22 et Illustration 23).</p>
+
+            <p>Pour optimiser la recherche des tests labo, j'ai procédé à une réécriture complète du code chargé de remplir le tableau à afficher.</p>
+
+            <p>Le code initial appelait les mêmes fonctions pour renseigner chaque ligne du tableau en utilisant une fonction native WinDev de lecture de la base de données. J'ai remplacé ce fonctionnement par une requête SQL unique qui me renvoie plus rapidement l'ensemble des informations nécessaires.</p>
+
+            <p>De plus, j'ai aussi supprimé les indirections (variables générées dynamiquement à partir de chaînes de caractères) et les ai remplacées par un tableau de champs.</p>
+
+            <div class="performance-comparison">
+                <div class="before-after before">
+                    <h4>Planning MES - Avant (÷3)</h4>
+                    <img width="605" height="267" src="rapport_fichiers/image025.gif" alt="temps d'exécution planning MES avant">
+                    <div class="image-caption">
+                        <strong>Illustration 20 :</strong> temps d'exécution de l'affichage planning logiciel MES avant optimisation
+                    </div>
+                </div><BR>
+                <div class="before-after after">
+                    <h4>Planning MES - Après</h4>
+                    <img width="604" height="268" src="rapport_fichiers/image026.gif" alt="temps d'exécution planning MES après">
+                    <div class="image-caption">
+                        <strong>Illustration 21 :</strong> temps d'exécution de l'affichage planning logiciel MES après optimisation
+                    </div>
+                </div>
+            </div>
+
+            <div class="performance-comparison">
+                <div class="before-after before">
+                    <h4>Tests labo - Avant (÷10)</h4>
+                    <img width="605" height="276" src="rapport_fichiers/image027.gif" alt="temps d'exécution tests labo avant">
+                    <div class="image-caption">
+                        <strong>Illustration 22 :</strong> temps d'exécution de la recherche des tests labo dans le logiciel Contrôle réception avant optimisation
+                    </div>
+                </div><BR>
+                <div class="before-after after">
+                    <h4>Tests labo - Après</h4>
+                    <img width="605" height="274" src="rapport_fichiers/image028.gif" alt="temps d'exécution tests labo après">
+                    <div class="image-caption">
+                        <strong>Illustration 23 :</strong> temps d'exécution de la recherche des tests labo dans le logiciel Contrôle réception après optimisation
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Analyse de l'alternance -->
+        <div class="page">
+            <h1 id="analyse">Analyse de l'alternance</h1>
+
+            <h2 id="bilan">Bilan technique et humain</h2>
+            
+            <div class="skills-section">
+                <p>Commencer mon alternance par une phase de débug m'a beaucoup aidé à m'approprier les différents logiciels et à cerner leurs spécificités. J'ai pris conscience de l'importance de produire un code fiable, optimisé, clair et maintenable dans le temps. Cette expérience m'a également appris à envisager dès la conception l'ensemble des cas possibles, et pas uniquement les scénarios principaux.</p>
+
+                <p>Progressivement, j'ai pris l'initiative d'aller au-delà des missions confiées, en optimisant plusieurs fonctionnalités et en restructurant certaines parties du code afin d'en améliorer la maintenabilité et la réutilisabilité.</p>
+
+                <p>Avec le recul, si je devais refaire cette alternance, j'essaierais de donner davantage de retours sur mon travail, d'exposer plus systématiquement les difficultés rencontrées et les solutions mises en œuvre, afin de mieux mettre en valeur mes contributions et de faciliter le suivi de mon travail.</p>
+
+                <p>Sur le plan humain, j'ai progressé dans ma manière de communiquer avec l'équipe. Même si mes échanges étaient parfois hésitants au début, j'ai gagné en assurance au fil des mois. Ce progrès reste toutefois un axe d'amélioration que je compte poursuivre dans mes futures expériences professionnelles.</p>
+            </div>
+
+            <h2 id="savoirs">Savoirs et savoir-faire</h2>
+            
+            <div class="skills-section">
+                <p>L'alternance a constitué pour moi une opportunité de renforcer mes connaissances acquises à l'IUT, notamment en bases de données. J'ai pu revoir et approfondir certains aspects liés à l'architecture des bases et perfectionner mon usage du langage SQL, en travaillant directement sur des problématiques concrètes et variées.</p>
+
+                <p>Par ailleurs, j'ai découvert l'environnement WinDev, qui m'a ouvert à de nouvelles compétences. J'ai ainsi appris à utiliser le langage WLanguage pour développer des applications, à concevoir des interfaces graphiques (IHM) adaptées aux besoins fonctionnels, et utiliser plusieurs outils intégrés : le système de versionnement GDS, les outils de débogage, ainsi que le centre de suivi de projet.</p>
+            </div>
+
+            <h2 id="competences">Compétences et apprentissages critiques</h2>
+            
+            <p class="no-indent"><strong>Remarque préalable :</strong> n'ayant pas validé la compétence 3 « Administrer des systèmes informatiques communicants complexes » en deuxième année et celle-ci étant absente du programme de troisième année, je l'aborde aussi ici.</p>
+
+            <p>Pour une description détaillée des compétences et Apprentissages Critiques (AC) développés ci-dessous, se référer aux <a href="#annexes">annexes I à IV</a>.</p>
+
+            <h3>Compétence 3 - Administrer des systèmes informatiques communicants complexes</h3>
+            
+            <div class="skills-section">
+                <p>Dans le cadre de mon alternance, j'ai pu développer mes compétences en conception et développement d'applications communicantes.</p>
+
+                <p>J'ai pu mettre en pratique l'apprentissage critique lié à l'utilisation de serveurs et services réseaux virtualisés, sur le projet SPC_mobile où j'ai implémenté une fonctionnalité permettant l'envoi de mesures depuis un smartphone vers la base de données du logiciel SPC ainsi que sur le projet Transfert d'image, où j'ai mis en place l'envoi, via le protocole HTTP, d'une image depuis un smartphone vers une application WinDev.</p>
+
+                <p>J'ai également mis en pratique l'apprentissage critique lié à l'utilisation de serveurs et de services réseaux virtualisés. Lors du développement du clignotement de la verrine, j'ai analysé et décodé les trames émises par les box, avant d'établir une communication par sockets pour échanger avec chaque périphérique. Cette approche m'a permis de maîtriser les mécanismes de base de la communication réseau, en décodant les informations et en assurant une transmission fiable des données. Par ailleurs, j'ai accédé à une base de données MongoDB distante en utilisant un VPN, ce qui a renforcé ma compréhension des infrastructures réseau sécurisées et de l'accès à des services virtualisés.</p>
+
+                <p>Enfin, j'ai concrétisé l'apprentissage critique relatif à la sécurisation des services et des données en développant la gestion des licences du logiciel Joaillerie. J'ai conçu une fonctionnalité permettant d'attribuer et de restituer les clés de licence, mesure indispensable pour contrôler l'accès au logiciel et éviter les usages frauduleux. Cette mission m'a sensibilisé aux bonnes pratiques en matière de sécurité logicielle, notamment la nécessité de protéger les ressources contre les accès non autorisés.</p>
+            </div>
+
+            <h3>Compétence 4 - Gérer des données de l'information</h3>
+            
+            <div class="skills-section">
+                <p>Les apprentissages critiques « Capturer et stocker des ensembles volumineux et complexes de données hétérogènes » et « Préparer et extraire les données pour l'exploitation » ont été au cœur de l'ensemble des projets que j'ai menés durant mon alternance, me permettant de développer une expertise solide dans la collecte, le traitement et l'exploitation de données variées et complexes.</p>
+
+                <p>En effet, en plus de l'hétérogénéité des données elles-mêmes (booléens, entiers, réels, chaînes de caractères, dates, fichiers, …), j'ai traité des données sous différents formats (csv, Json, trames binaires, …).</p>
+
+                <p>Une fois les données extraites et préparées, je les enregistrais en base de données pour qu'elles puissent être réutilisées par les différents logiciels, notamment dans une optique de gestion et de contrôle qualité. Cette étape a nécessité l'évolution de tables existantes ainsi que la création de nouvelles, en veillant à préserver les relations entre elles pour garantir la cohérence et l'efficacité du système.</p>
+
+                <p>Concernant l'apprentissage critique d'exploration et d'exploitation des données (apprentissage, informatique décisionnelle ou fouille de données), l'ensemble des écrans développés ont pour but d'exploiter les données à des fins de prise de décision. De plus, concernant l'exploration, la page de débug automatisée que j'ai développée, permet une analyse fine des données opérationnelles.</p>
+
+                <p>Enfin, concernant l'apprentissage critique de mise en production et d'optimisation des systèmes de gestion de données, j'ai déployé en production l'ensemble de mes modifications du MES. De plus, j'ai réalisé de nombreux travaux d'optimisation, aussi bien pour réaliser des gains de performance que d'adaptabilité. Ces réalisations illustrent ma capacité à déployer des solutions performantes et évolutives, tout en garantissant leur efficacité à long terme.</p>
+            </div>
+
+            <h3>Compétence 5 - Conduire un projet</h3>
+            
+            <div class="skills-section">
+                <p>Lors de la refonte du code de recherche de chemins, j'ai dû arbitrer entre performance et flexibilité en introduisant des indirections, ce qui a légèrement ralenti l'exécution. Cependant, cette fonctionnalité n'étant pas critique en temps réel, ce compromis s'est avéré justifié par les avantages obtenus : une meilleure adaptabilité du code et une réutilisabilité accrue. De plus, en refactorisant ce code, j'ai veillé à en faciliter la maintenance et l'intégration dans d'autres logiciels, anticipant ainsi les besoins futurs et réduisant les coûts de développement à long terme. Ces réalisations démontrent ma capacité à évaluer les impacts technologiques, économiques et sociétaux d'un projet, en privilégiant des solutions équilibrées et durables.</p>
+
+                <p>L'apprentissage critique lié à l'intégration d'un projet dans un système d'information s'est illustré à travers l'ensemble de mes réalisations. En effet, tous mes développements devaient s'intégrer à des logiciels existants. Un bon exemple de cela est le tableau de bord du MES du fait des éléments déjà présents et de la complexité de ceux à ajouter, tout en conservant un affichage fluide et lisible.</p>
+
+                <p>Enfin, j'ai démontré ma capacité à adapter un système d'information à travers des actions proactives d'automatisation, d'optimisation des performances et refontes de code en vue d'une meilleure maintenabilité et réutilisabilité.</p>
+            </div>
+
+            <h3>Compétence 6 - Collaborer au sein d'une équipe informatique</h3>
+            
+            <div class="skills-section">
+                <p>Face à la complexité du développement d'applications iOS, une technologie encore inexplorée au sein de Qualigest, j'ai rédigé une documentation à destination des développeurs. En formalisant cette veille technologique, j'ai facilité l'appropriation de cette technologie par l'équipe, tout en réduisant les risques d'erreurs et en accélérant les futurs développements. Cette démarche illustre ma capacité à organiser une veille technologique, à la formaliser et à la diffuser pour enrichir les compétences collectives et préparer l'entreprise aux évolutions futures.</p>
+
+                <p>Pour répondre aux enjeux de l'économie de l'innovation numérique, j'ai mis en place des solutions techniques qui intègrent à la fois flexibilité et efficacité. Par exemple, la table <em>parametre_machine</em>, que j'ai créée, permet de configurer les requêtes directement en base, sans nécessiter de recompilation du code. Cette approche offre une adaptabilité immédiate aux évolutions des besoins clients et facilite le déploiement pour de futurs utilisateurs, réduisant ainsi les coûts de maintenance et d'évolution. Par ailleurs, j'ai contribué à l'optimisation des performances des logiciels, facteur déterminant pour renforcer la satisfaction client. Ces réalisations illustrent ma capacité à identifier et à intégrer les enjeux économiques de l'innovation, en alignant les solutions techniques sur les objectifs stratégiques de l'entreprise.</p>
+
+                <p>Dans le cadre de la conduite du changement, une fois les développements de la récupération des données depuis une base MongoDB finalisés, j'ai présenté et expliqué en détail le fonctionnement au client. Cette démarche a permis de lever les appréhensions et de faciliter l'appropriation de ce nouvel outil.</p>
+
+                <p>En ce qui concerne l'accompagnement du management de projet informatique, j'ai participé aux réunions d'équipe hebdomadaires servant à répartir les sujets et les tâches pour la semaine et utilisé le Centre de suivi de projet pour suivre leur avancement. J'ai également travaillé avec le Gestionnaire De Sources (GDS) afin de gérer les versions de code de manière collaborative. Ces expériences m'ont permis de développer une approche concrète du management de projet, en renforçant mes compétences en organisation, coordination et optimisation des processus.</p>
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="page conclusion-page">
+            <h1 class="title-no-number" id="conclusion">Conclusion</h1>
+            
+            <div class="company-info">
+                <p>Au cours de cette année d'alternance, j'ai pu appréhender les différentes facettes du métier d'informaticien à travers ma participation aux diverses phases de vie d'un projet : depuis le recueil et l'analyse des besoins, en passant par la conception et le développement, jusqu'à la validation et l'intégration des solutions.</p>
+
+                <p>Au fil des mois, j'ai cherché à aller plus loin que les missions qui m'étaient confiées. Cela m'a conduit à développer des outils pour automatiser le débogage — aujourd'hui intégrés à l'application —, à optimiser des fonctionnalités au-delà du cahier des charges initial, et à refondre certaines parties de code pour les rendre plus maintenables et réutilisables.</p>
+
+                <p>À l'exception du module « Transfert d'image (Joaillerie) », actuellement en attente d'approbation du côté d'Apple, l'ensemble des développements, évolutions, corrections et optimisations que j'ai réalisés ont été intégrés chez des clients et sont aujourd'hui en production.</p>
+
+                <p>Cette alternance a été l'occasion de mettre en pratique les connaissances acquises durant mes trois années de BUT Informatique, mais également d'en acquérir de nouvelles. Elle m'a permis de progresser dans un environnement professionnel concret, de développer mes compétences techniques, et d'améliorer mes capacités à collaborer et à communiquer au sein d'une équipe.</p>
+
+                <p>Cette expérience dans une entreprise à taille humaine, où j'ai été chaleureusement accueilli et intégré, restera pour moi un moment marquant de mon parcours, tant sur le plan professionnel que personnel.</p>
+            </div>
+        </div>
+
+        <!-- Table des illustrations -->
+        <div class="page">
+            <h1 class="title-no-number" id="illustrations">Table des illustrations</h1>
+            
+            <div class="toc">
+                <div class="toc-item">
+                    <span>Illustration 1 : Organigramme de la société Qualigest</span>
+                    <span>3</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 2 : Représentation graphique du temps passé sur les différents logiciels</span>
+                    <span>4</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 3 : Centre de Suivi de Projets</span>
+                    <span>5</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 4 : box Vermot - affichage et verrine 4 couleurs</span>
+                    <span>7</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 5 : page de débogage automatisé</span>
+                    <span>9</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 6 : écran de paramétrage des états</span>
+                    <span>11</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 7 : écran Tableau de bord</span>
+                    <span>12</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 8 : Tables pour intégration des données en provenance de MongoDb</span>
+                    <span>13</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 9 : paramètres machine</span>
+                    <span>14</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 10 : écran de recherche des valeurs de paramètres machines</span>
+                    <span>14</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 11 : écran Planning des contrôles</span>
+                    <span>15</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 12: écrans SPC_mobile</span>
+                    <span>16</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 13: écran d'import d'image dans le logiciel Joaillerie</span>
+                    <span>18</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 14 : état d'origine présentant des problèmes de pagination</span>
+                    <span>20</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 15 : état corrigé ne présentant plus de problèmes de pagination</span>
+                    <span>21</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 16 : écran de recherche et modification des chemins</span>
+                    <span>23</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 17 : écran principal du logiciel Joaillerie</span>
+                    <span>24</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 18 : temps d'exécution de l'affichage de la fenêtre du planning de production standard avant optimisation</span>
+                    <span>26</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 19 : temps d'exécution de l'affichage de la fenêtre du planning de production standard après optimisation</span>
+                    <span>26</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 20 : temps d'exécution de l'affichage planning logiciel MES avant optimisation</span>
+                    <span>28</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 21 : temps d'exécution de l'affichage planning logiciel MES après optimisation</span>
+                    <span>28</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 22 : temps d'exécution de la recherche des tests labo dans le logiciel Contrôle réception avant optimisation</span>
+                    <span>29</span>
+                </div>
+                <div class="toc-item">
+                    <span>Illustration 23 : temps d'exécution de la recherche des tests labo dans le logiciel Contrôle réception après optimisation</span>
+                    <span>29</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Glossaire -->
+        <div class="page">
+            <h1 class="title-no-number" id="glossaire">Glossaire, abréviations et acronymes</h1>
+            
+            <div class="glossary-term">
+                <span class="term-name">AC</span>
+                <div class="term-definition">: <strong>A</strong>pprentissage <strong>C</strong>ritique</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">API</span>
+                <div class="term-definition">: <strong>A</strong>pplication <strong>P</strong>rogramming <strong>I</strong>nterface - ensemble de règles, méthodes, fonctions et protocoles normalisés qui permet à un logiciel (appelé "client") d'accéder aux fonctionnalités ou aux données d'un autre logiciel (appelé "serveur"), sans avoir besoin de connaître ses détails internes.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">Box</span>
+                <div class="term-definition">: boîtier se connectant à des machines et permettant de collecter et exploiter les données de production en temps réel, facilitant le suivi et l'analyse.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">BUT</span>
+                <div class="term-definition">: <strong>B</strong>achelor <strong>U</strong>niversitaire de <strong>T</strong>echnologie</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">DPI</span>
+                <div class="term-definition">: <strong>D</strong>ots <strong>P</strong>er <strong>I</strong>nch ou points par pouce - unité de mesure de la résolution, principalement utilisée dans le domaine de l'impression.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">ERP</span>
+                <div class="term-definition">: <strong>E</strong>nterprise <strong>R</strong>esource <strong>P</strong>lanning - système logiciel intégré qui permet à une entreprise de gérer et de piloter de manière centralisée l'ensemble de ses processus opérationnels.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">HFSQL</span>
+                <div class="term-definition">: <strong>H</strong>yper<strong>F</strong>ile <strong>SQL</strong> - système de gestion de base de données relationnelle développé par PC SOFT, utilisé principalement avec les environnements de développement WinDev, WebDev, et WinDev Mobile.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">HTTP</span>
+                <div class="term-definition">: <strong>H</strong>yper<strong>T</strong>ext <strong>T</strong>ransfer <strong>P</strong>rotocol - protocole de communication principalement utilisé sur Internet pour échanger des informations entre un client (comme un navigateur web) et un serveur web.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">IDE</span>
+                <div class="term-definition">: <strong>I</strong>ntegrated <strong>D</strong>evelopment <strong>E</strong>nvironment - application logicielle qui regroupe sur une même interface graphique tous les outils nécessaires au développement de logiciels.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">IHM</span>
+                <div class="term-definition">: <strong>I</strong>nterface <strong>H</strong>omme-<strong>M</strong>achine - dispositif matériel et/ou logiciel qui permet à une personne (l'utilisateur) d'interagir avec une machine, un système ou un appareil.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">IUT</span>
+                <div class="term-definition">: <strong>I</strong>nstitut <strong>U</strong>niversitaire de <strong>T</strong>echnologie</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">MES</span>
+                <div class="term-definition">: Manufacturing Execution System - système informatique complet qui surveille, documente, suit et contrôle en temps réel le processus de production, depuis les matières premières jusqu'au produit fini.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">OF</span>
+                <div class="term-definition">: <strong>O</strong>rdre de <strong>F</strong>abrication</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">PME</span>
+                <div class="term-definition">: <strong>P</strong>etite et <strong>M</strong>oyenne <strong>E</strong>ntreprise - entreprise qui emploie moins de 250 salariés et dont le chiffre d'affaires annuel ne dépasse pas 50 millions d'euros.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">RGPD</span>
+                <div class="term-definition">: <strong>R</strong>èglement <strong>G</strong>énéral sur la <strong>P</strong>rotection des <strong>D</strong>onnées - règlement européen entré en vigueur en 2018, qui vise à protéger les données personnelles des citoyens européens en encadrant strictement leur collecte, leur traitement et leur conservation.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">SAS</span>
+                <div class="term-definition">: <strong>S</strong>ociété par <strong>A</strong>ctions <strong>S</strong>implifiée - forme juridique d'entreprise française caractérisée par une grande souplesse de fonctionnement.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">Socket</span>
+                <div class="term-definition">: point de communication qui permet à deux programmes (souvent sur des machines différentes, mais pas forcément) d'échanger des données via un réseau.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">SQL</span>
+                <div class="term-definition">: <strong>S</strong>tructured <strong>Q</strong>uery <strong>L</strong>anguage ou langage de requête structuré - langage informatique standard utilisé pour gérer et manipuler des bases de données relationnelles.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">UI</span>
+                <div class="term-definition">: <strong>U</strong>ser <strong>I</strong>nterface ou Interface Utilisateur - ensemble des éléments visuels et interactifs d'un logiciel, d'une application ou d'un site web qui permettent à un utilisateur d'interagir avec le système.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">UML</span>
+                <div class="term-definition">: <strong>U</strong>nified <strong>M</strong>odeling <strong>L</strong>anguage ou Langage de Modélisation Unifié - langage graphique standardisé utilisé pour représenter, analyser et concevoir des systèmes logiciels et des processus métiers.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">Verrine</span>
+                <div class="term-definition">: ensemble de lumières installé sur une box pouvant s'allumer et clignoter indépendamment les unes des autres.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">Xcode</span>
+                <div class="term-definition">: environnement de développement intégré (IDE) officiel d'Apple, utilisé pour créer des applications sur macOS, iOS, watchOS, tvOS, et visionOS.</div>
+            </div>
+        </div>
+
+        <!-- Sitographie -->
+        <div class="page">
+            <h1 class="title-no-number" id="sitographie">Sitographie</h1>
+            
+            <div class="highlight-box">
+                <p class="no-indent"><strong>Qualigest, site officiel :</strong> <a href="https://www.logiciel-qualite.fr">https://www.logiciel-qualite.fr</a></p>
+
+                <p class="no-indent"><strong>L'annuaire des entreprises, Qualigest :</strong> <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/qualigest-340775683">https://annuaire-entreprises.data.gouv.fr/entreprise/qualigest-340775683</a></p>
+
+                <p class="no-indent"><strong>PC SOFT, documentation en ligne de WinDev et WinDev Mobile :</strong> <a href="https://doc.pcsoft.fr/" target="_blank">https://doc.pcsoft.fr/</a></p>
+
+                <p class="no-indent"><strong>PC SOFT, présentation de WinDev Mobile :</strong> <a href="https://doc.pcsoft.fr/fr-FR/?3023025" target="_blank">https://doc.pcsoft.fr/fr-FR/?3023025</a></p>
+
+                <p class="no-indent"><strong>App Store Connect, soumission d'applications à Apple :</strong> <a href="https://appstoreconnect.apple.com/login">https://appstoreconnect.apple.com/login</a></p>
+
+                <p class="no-indent"><strong>TestFlight Apple, test des versions bêta d'app Apple :</strong> <a href="https://testflight.apple.com" target="_blank">https://testflight.apple.com</a></p>
+
+                <p class="no-indent"><strong>Xcode Releases, téléchargement d'anciennes versions de Xcode :</strong> <a href="https://xcodereleases.com" target="_blank">https://xcodereleases.com</a></p>
+            </div>
+        </div>
+
+        <!-- Table des annexes -->
+        <div class="page">
+            <h1 class="title-no-number" id="annexes">Table des annexes</h1>
+            
+            <div class="toc">
+                <div class="toc-item">
+                    <a href="#annexe1">ANNEXE I - Compétence 3 - Administrer des systèmes informatiques communicants complexes</a>
+                    <span>I</span>
+                </div>
+                <div class="toc-item">
+                    <a href="#annexe2">ANNEXE II - Compétence 4 - Gérer des données de l'information</a>
+                    <span>II</span>
+                </div>
+                <div class="toc-item">
+                    <a href="#annexe3">ANNEXE III - Compétence 5 - Conduire un projet</a>
+                    <span>III</span>
+                </div>
+                <div class="toc-item">
+                    <a href="#annexe4">ANNEXE IV - Compétence 6 - Collaborer au sein d'une équipe informatique</a>
+                    <span>IV</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Annexes -->
+        <div class="page">
+            <div class="annexes">
+                <h1 class="title-no-number" id="annexe1">ANNEXE I - Compétence 3 - Administrer des systèmes informatiques communicants complexes</h1>
+                
+                <div class="image-container">
+                    <img width="605" height="373" src="rapport_fichiers/image029.jpg" alt="Compétence 3 - Administrer des systèmes informatiques communicants complexes">
+                </div>
+            </div>
+        </div>
+
+        <div class="page">
+            <div class="annexes">
+                <h1 class="title-no-number" id="annexe2">ANNEXE II - Compétence 4 - Gérer des données de l'information</h1>
+                
+                <div class="image-container">
+                    <img width="605" height="532" src="rapport_fichiers/image030.gif" alt="Compétence 4 - Gérer des données de l'information">
+                </div>
+            </div>
+        </div>
+
+        <div class="page">
+            <div class="annexes">
+                <h1 class="title-no-number" id="annexe3">ANNEXE III - Compétence 5 - Conduire un projet</h1>
+                
+                <div class="image-container">
+                    <img width="605" height="473" src="rapport_fichiers/image031.gif" alt="Compétence 5 - Conduire un projet">
+                </div>
+            </div>
+        </div>
+
+        <div class="page">
+            <div class="annexes">
+                <h1 class="title-no-number" id="annexe4">ANNEXE IV - Compétence 6 - Collaborer au sein d'une équipe informatique</h1>
+                
+                <div class="image-container">
+                    <img width="605" height="522" src="rapport_fichiers/image032.gif" alt="Compétence 6 - Collaborer au sein d'une équipe informatique">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

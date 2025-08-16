@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Projet QUALI'MES - BOUVAIS</title>
+    <title>Thomas BOUVAIS - Portfolio Développeur</title>
     <style>
         * {
             margin: 0;
@@ -15,469 +15,771 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            overflow: hidden;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .header {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.1); opacity: 0.3; }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
-        .header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Header Hero Section */
+        .hero {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            z-index: 1;
+            overflow: hidden;
         }
 
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
         }
 
-        .content {
-            padding: 2rem;
-        }
-
-        .section {
-            margin-bottom: 3rem;
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .section-title {
-            color: #2c3e50;
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #3498db;
-            display: inline-block;
-        }
-
-        .subsection-title {
-            color: #34495e;
-            font-size: 1.8rem;
-            font-weight: 500;
-            margin: 2rem 0 1rem 0;
-            padding: 1rem;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-left: 5px solid #3498db;
-            border-radius: 8px;
-        }
-
-        .subsubsection-title {
-            color: #2c3e50;
-            font-size: 1.4rem;
-            font-weight: 500;
-            margin: 1.5rem 0 1rem 0;
-            padding: 0.8rem;
-            background: #ecf0f1;
-            border-radius: 8px;
-            border-left: 3px solid #e74c3c;
-        }
-
-        p {
-            margin-bottom: 1rem;
-            text-align: justify;
-            color: #555;
-            font-size: 1.1rem;
-        }
-
-        ul {
-            margin: 1rem 0 1rem 2rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-            color: #555;
-            font-size: 1.1rem;
-        }
-
-        .highlight {
-            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
-            border-left: 5px solid #e74c3c;
-        }
-
-        .competence-block {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin: 1rem 0;
-        }
-
-        .competence-block h4 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .image-placeholder {
-            background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
-                        linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
-                        linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
-                        linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-            border: 2px dashed #ccc;
-            padding: 3rem;
+        .hero-content {
             text-align: center;
-            color: #666;
-            font-style: italic;
-            margin: 1.5rem 0;
-            border-radius: 10px;
+            color: white;
+            z-index: 1;
+            position: relative;
+            max-width: 800px;
+            padding: 40px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .shape1 {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape2 {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .shape3 {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
             transition: all 0.3s ease;
         }
 
-        .image-placeholder:hover {
-            background-color: rgba(52, 152, 219, 0.1);
-            border-color: #3498db;
-            color: #3498db;
+        .nav.scrolled {
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
-        .tech-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #3498db, #2980b9);
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2F5496;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 100px 0;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: #2F5496;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Portfolio Cards */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .portfolio-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
             color: white;
-            padding: 0.3rem 0.8rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #2F5496;
+            font-weight: 600;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .card-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #2F5496;
+            padding: 5px 15px;
             border-radius: 20px;
             font-size: 0.9rem;
-            margin: 0.2rem;
             font-weight: 500;
         }
 
-        .intro-section {
-            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+        .card-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+            margin-bottom: 10px;
         }
 
-        .footer {
+        .card-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .card-button.secondary {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .card-button.secondary:hover {
+            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.4);
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .about-image {
             text-align: center;
-            padding: 2rem;
+            animation: slideInRight 1s ease-out;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: white;
+            margin: 0 auto;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: #2F5496;
+        }
+
+        .about-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        .footer {
             background: #2c3e50;
             color: white;
-            font-style: italic;
+            text-align: center;
+            padding: 30px 0;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            .header h1 {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
                 font-size: 2rem;
             }
-            
-            .container {
-                margin: 1rem;
-                border-radius: 10px;
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+                font-size: 4rem;
             }
-            
-            .content {
-                padding: 1rem;
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Particles effect */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: particleFloat 20s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
             }
-            
-            .section {
-                padding: 1.5rem;
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(720deg);
+                opacity: 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Portfolio Projet QUALI'MES</h1>
-            <p>Système MES - Manufacturing Execution System</p>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Thomas BOUVAIS</div>
+            <ul class="nav-links">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="content">
-            <div class="intro-section">
-                <h2>Sujets abordés dans le projet</h2>
-                <p>Ce portfolio présente mes réalisations sur le logiciel MES QUALI'MES développé par Qualigest, incluant le débogage, l'amélioration des fonctionnalités et l'intégration de nouveaux systèmes de données.</p>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="floating-shapes">
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
+        </div>
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Thomas BOUVAIS</h1>
+            <h2 class="hero-subtitle">Développeur Informatique</h2>
+            <p class="hero-description">BUT Informatique 3ème année - Spécialisé en développement logiciel et gestion de systèmes d'information</p>
+            <a href="#portfolio" class="contact-button">Découvrir mon travail</a>
+            <a href="Bouvais_thomas_CV.pdf" class="contact-button" target="_blank">Télécharger mon CV</a>
+        </div>
+    </section>
 
-            <div class="section">
-                <h2 class="section-title">QUALI'MES</h2>
-                
-                <div class="subsection-title">Présentation du logiciel</div>
-                <p>Un logiciel MES (Manufacturing Execution System) est un outil de gestion et de pilotage des opérations de production en temps réel. Il permet la collecte des données de production des machines via la scrutation ou l'importation de fichiers afin d'optimiser l'exécution des OFs (Ordre de Fabrication) et garantir une traçabilité complète de chaque opération.</p>
-                
-                <p>QUALI'MES, le logiciel MES développé par Qualigest, assure non seulement la collecte des données issues des machines via des box* (cf. Illustration 4), leur affichage dans un tableau de bord, mais permet également de transmettre des informations vers les box en tenant compte des paramètres configurés et des calculs effectués.</p>
-
-                <div class="image-placeholder">
-                    <strong>Illustration 1 : box Vermot - affichage et verrine 4 couleurs</strong><br>
-                    [Image du dispositif box avec verrine lumineuse]
+    <!-- Portfolio Section -->
+    <section class="section" id="portfolio">
+        <div class="container">
+            <h2 class="section-title fade-in">Mon Portfolio</h2>
+            <div class="portfolio-grid">
+                <!-- Rapport d'alternance -->
+                <div class="portfolio-card fade-in">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Rapport d'Alternance</h3>
+                    <p class="card-description">
+                        Découvrez mon expérience complète chez Qualigest : développement de logiciels de gestion qualité, 
+                        optimisations de performances, et gestion de projets complexes.
+                    </p>
+                    <div class="card-skills">
+                        <span class="skill-tag">Compétence C3</span>
+                        <span class="skill-tag">Compétence C4</span>
+                        <span class="skill-tag">Compétence C5</span>
+                        <span class="skill-tag">Compétence C6</span>
+                    </div>
+                    <a href="rapport.html" class="card-button">Lire en ligne</a>
+                    <a href="rapport.pdf" class="card-button secondary" target="_blank">PDF</a>
                 </div>
 
-                <div class="subsection-title">Débug</div>
-                
-                <div class="subsubsection-title">Cahier des charges</div>
-                <p>À mon arrivée sur le projet MES, la priorité a été fixée sur la résolution de nombreux bugs avant toute évolution du logiciel. Mes premières missions ont donc porté sur le débogage.</p>
-                
-                <p>En effet, il avait été constaté qu'un certain nombre de données sur les box du client ne correspondaient pas aux données présentes en base de données et affichées au niveau des IHMs (Interface Homme Machine).</p>
-                
-                <p>Il m'a donc été demandé d'analyser et résoudre ces problèmes.</p>
-
-                <div class="subsubsection-title">Réalisations</div>
-                <p>J'ai rapidement constaté des dysfonctionnements importants dans la base de données, notamment :</p>
-                <ul>
-                    <li>L'activation simultanée de plusieurs opérations sur une même machine ;</li>
-                    <li>Des doublons d'opérations sur différentes machines ;</li>
-                    <li>Des incohérences entre l'état des opérations dans le système et la réalité observée chez le client ;</li>
-                    <li>Des calculs erronés au niveau des dates des OFs.</li>
-                </ul>
-
-                <p>Certaines de ces erreurs résultaient d'usages imprévus du MES, comme la clôture puis la réouverture d'opérations ou encore la migration d'une opération d'une machine à une autre sans mise à jour du numéro d'OF associé.</p>
-
-                <p>Dans ce contexte, mes interventions initiales ont consisté à identifier et corriger ces anomalies en passant au crible toutes les machines et opérations pour repérer les incohérences, afin de remonter jusqu'à la partie du code à l'origine des problèmes.</p>
-
-                <div class="highlight">
-                    <p>Pour optimiser ce processus fastidieux nécessitant un recensement manuel, j'ai alors pris l'initiative de développer une page de débogage automatisé. Cette nouvelle interface a permis de vérifier en temps réel l'intégralité des opérations, d'identifier rapidement les erreurs existantes, et de faciliter le suivi des corrections. Elle a ensuite été intégrée au logiciel MES puis enrichie progressivement pour accompagner l'intégration de nouvelles fonctionnalités.</p>
+                <!-- Portfolio QUALI'MES -->
+                <div class="portfolio-card fade-in">
+                    <div class="card-icon">⚙️</div>
+                    <h3 class="card-title">Portfolio QUALI'MES</h3>
+                    <p class="card-description">
+                        Plongez dans le détail de mon projet phare : développement et optimisation du logiciel MES 
+                        QUALI'MES, de la correction de bugs aux nouvelles fonctionnalités innovantes.
+                    </p>
+                    <div class="card-skills">
+                        <span class="skill-tag">Compétence C3</span>
+                        <span class="skill-tag">Compétence C4</span>
+                        <span class="skill-tag">Compétence C5</span>
+                    </div>
+                    <a href="pfolio.html" class="card-button">Explorer le projet</a>
                 </div>
 
-                <div class="subsubsection-title">Valorisation des compétences C4 et C5</div>
-                
-                <div class="competence-block">
-                    <h4>C4 – Gérer des données de l'information</h4>
-                    <p>Mon intervention sur le logiciel QUALI'MES a révélé d'importants dysfonctionnements dans la base de données : activations simultanées non prévues, doublons d'enregistrements, incohérences de statuts, et calculs erronés. J'ai mené un travail méthodique d'analyse, en passant au crible l'ensemble des machines et opérations afin d'identifier les anomalies.</p>
-                    
-                    <p>Ce processus s'est accompagné du développement d'une page de débogage automatisé permettant de vérifier en temps réel l'intégralité des opérations. Cet outil a facilité la détection rapide des erreurs existantes, la prise de décision corrective et le suivi des actions mises en œuvre. Au-delà de son rôle dans le débogage, cette page constitue un outil d'exploration et de contrôle des données, optimisant la qualité et la fiabilité des informations exploitées.</p>
-                </div>
-
-                <div class="competence-block">
-                    <h4>C5 – Conduire un projet</h4>
-                    <p>Face à la complexité et au temps requis pour corriger manuellement les incohérences de données, j'ai pris l'initiative de concevoir un outil d'automatisation sous forme de page de débogage automatisé. Ce projet, mené de bout en bout, a permis de réduire considérablement le temps de traitement, tout en améliorant la qualité des corrections effectuées.</p>
-                    
-                    <p>Cette démarche proactive a eu un double impact :</p>
-                    <ul>
-                        <li><strong>Économique :</strong> réduction significative du temps de travail requis pour les équipes techniques.</li>
-                        <li><strong>Sociétal :</strong> amélioration du confort de travail des utilisateurs et développeurs, qui peuvent désormais se concentrer sur des tâches à plus forte valeur ajoutée.</li>
-                    </ul>
-                    
-                    <p>Ce projet illustre ma capacité à identifier un besoin, à concevoir une solution technique adaptée, puis à la déployer efficacement dans un contexte opérationnel.</p>
-                </div>
-
-                <div class="subsection-title">Clignotement verrine</div>
-
-                <div class="subsubsection-title">Cahier des charges</div>
-                <p>Mettre en œuvre un système de détection de nouvelles alertes machines, ainsi que leur affichage simultané sur la verrine* de la box* machine et sur l'interface logicielle, au niveau du tableau de bord et de la page de débogage.</p>
-
-                <p>La verrine installée sur la machine comporte quatre lumières (1 verte, 1 rouge, 1 bleu, 1 jaune) pouvant s'allumer et clignoter indépendamment les unes des autres. Aujourd'hui, elle est utilisée pour signaler certains états de fonctionnement tel que le fait que la machine soit active (lumière verte fixe), arrêtée (lumière rouge fixe) ou que la cadence de production est trop faible ou trop élevée (lumière verte clignotante).</p>
-
-                <p>Les nouvelles alertes à détecter sont :</p>
-                <ul>
-                    <li>Pas d'OF actif => donné par la box</li>
-                    <li>Alerte affutage => donné par la box</li>
-                    <li>cadence de production trop faible ou trop élevée avec un facteur paramétrable</li>
-                    <li>Variation trop grande de la vitesse de production</li>
-                </ul>
-
-                <p>Ces nouvelles alertes doivent être signalées par un clignotement bleu au niveau de la verrine, du tableau de bord et de la page de débug. Toutefois, le clignotement bleu ne doit être pris en compte que lorsque les états suivants de la machine sont sélectionnés :</p>
-                <ul>
-                    <li>Pas d'OF actif</li>
-                    <li>Machine en chauffe</li>
-                    <li>Machine en production</li>
-                    <li>Machine à l'arrêt</li>
-                    <li>Machine en cours de réglage</li>
-                    <li>Machine en cours de ravitaillement</li>
-                    <li>Autre</li>
-                </ul>
-
-                <div class="subsubsection-title">Réalisations</div>
-                <p>Pour ce développement, j'ai commencé par analyser le format des données émises par les box afin d'identifier et décoder les informations contenues dans une trame. Lors de la scrutation, des sockets* sont créées pour communiquer individuellement avec chaque box, ce qui me permet d'extraire précisément les octets ciblés grâce à la structure de la trame, puis de stocker les données en base si besoin.</p>
-
-                <div class="tech-badge">Socket Programming</div>
-                <div class="tech-badge">Database Management</div>
-                <div class="tech-badge">Real-time Processing</div>
-
-                <p>Une fois les informations techniques analysées, j'ai développé plusieurs fonctionnalités visant à améliorer l'intégration des signaux lumineux dans le système.</p>
-
-                <p>Tout d'abord, j'ai procédé à un ajustement de la base de données : auparavant, le clignotement vert était uniquement géré localement par la box, sans répercussion en base ni sur l'interface utilisateur. Pour corriger cela, j'ai ajouté une colonne dans la table des machines permettant de stocker l'état de clignotement (0 pour aucun, 1 pour vert, 2 pour bleu).</p>
-
-                <p>En parallèle, j'ai conçu un écran dédié au paramétrage de ces états et développé les fonctions de calcul associées. Concernant l'alerte de "variation trop grande de la vitesse de production", le cahier des charges initial prévoyait une comparaison sur 3 valeurs, mais j'ai proposé une solution plus flexible s'appuyant sur les n dernières valeurs.</p>
-
-                <div class="image-placeholder">
-                    <strong>Illustration 2 : écran de paramétrage des états</strong><br>
-                    [Interface de configuration des paramètres d'alertes]
-                </div>
-
-                <p>J'ai également modifié le tableau de bord pour intégrer ces nouvelles fonctionnalités. La complexité de ce développement réside notamment dans la prise en compte des contraintes suivantes :</p>
-                <ul>
-                    <li>La mise à jour automatique toutes les minutes selon les données présentes en base via une requête asynchrone afin de limiter les ralentissements, en particulier perceptibles lors du clignotement.</li>
-                    <li>la gestion du statut de chaque box via un ping, opération coûteuse en temps et nécessitant l'utilisation du multithreading</li>
-                    <li>L'affichage en temps réel du clignotement.</li>
-                </ul>
-
-                <p>Par ailleurs, j'ai aussi modifié la page de débug pour intégrer ces nouveaux paramètres, avec les mêmes contraintes techniques que sur le tableau de bord.</p>
-
-                <p>J'ai terminé en mettant en place l'envoi du signal de clignotement bleu à la box, pour que l'affichage corresponde bien aux réglages faits dans l'IHM*.</p>
-
-                <div class="image-placeholder">
-                    <strong>Illustration 3 : écran Tableau de bord</strong><br>
-                    [Interface principale du tableau de bord avec indicateurs visuels]
-                </div>
-
-                <div class="subsubsection-title">Valorisation des compétences C3 et C4</div>
-
-                <div class="competence-block">
-                    <h4>C3 – Administrer des systèmes informatiques communicants complexes</h4>
-                    <p>Dans le cadre du développement de la fonctionnalité de clignotement de la verrine, j'ai été amené à mettre en place une communication directe avec les box machines via des sockets réseau. Cette tâche a nécessité l'analyse approfondie du format des données émises par ces box afin d'identifier et de décoder avec précision les informations contenues dans chaque trame.</p>
-                    
-                    <p>Lors de la phase de scrutation, j'ai conçu un mécanisme permettant de créer dynamiquement des sockets pour dialoguer individuellement avec chaque box. Bien que ces périphériques ne soient pas des serveurs virtualisés au sens strict, leur gestion requiert une compréhension avancée des services réseau et des protocoles de communication. Cette expérience m'a permis de consolider mes compétences en administration de systèmes communicants et en intégration de périphériques réseau au sein d'un environnement de production.</p>
-                </div>
-
-                <div class="competence-block">
-                    <h4>C4 – Gérer des données de l'information</h4>
-                    <p>Mon intervention sur le logiciel QUALI'MES a révélé d'importants dysfonctionnements dans la base de données : activations simultanées non prévues, doublons d'enregistrements, incohérences de statuts, et calculs erronés. J'ai mené un travail méthodique d'analyse, en passant au crible l'ensemble des machines et opérations afin d'identifier les anomalies.</p>
-                    
-                    <p>Ce processus s'est accompagné du développement d'une page de débogage automatisé permettant de vérifier en temps réel l'intégralité des opérations. Cet outil a facilité la détection rapide des erreurs existantes, la prise de décision corrective et le suivi des actions mises en œuvre. Au-delà de son rôle dans le débogage, cette page constitue un outil d'exploration et de contrôle des données, optimisant la qualité et la fiabilité des informations exploitées.</p>
-                </div>
-
-                <div class="subsection-title">Récupération mongoDB</div>
-
-                <div class="subsubsection-title">Cahier des charges</div>
-                <p>Le client possède un outil externe lui permettant d'enregistrer les paramètres machine (Nombre de pièces, température du moteur, température du codeur et état de la machine) au sein d'une base de données MongoDb.</p>
-                <p>Le client souhaite que ces données soient visibles au sein du logiciel QUALI'MES.</p>
-
-                <div class="subsubsection-title">Réalisations</div>
-                <p>Un aspect important de mon travail a été la récupération des données depuis une base MongoDB gérée par le client.</p>
-
-                <p>Dans un premier temps j'ai développé la fonction de récupération des données contenues dans une base MongoDb située chez le client. Lors des phases de test et de développement j'ai dû passer par un VPN pour pouvoir accéder directement à la base de données du client. J'ai établi une connexion à la base et récupéré les données nécessaires au format JSON.</p>
-
-                <div class="tech-badge">MongoDB</div>
-                <div class="tech-badge">VPN</div>
-                <div class="tech-badge">JSON</div>
-                <div class="tech-badge">Database Integration</div>
-
-                <p>Pour enregistrer les données dans la base du logiciel MES, j'ai créé plusieurs tables. Les tables « opérations » et « machines » existaient déjà et j'ai ajouté les tables operation_param_machine, valeurs_param_machine, machines_parametre_machine et parametre_machine, ainsi que les liens associés.</p>
-
-                <div class="image-placeholder">
-                    <strong>Illustration 4 : Tables pour intégration des données en provenance de MongoDb</strong><br>
-                    [Schéma de base de données montrant les relations entre les tables]
-                </div>
-
-                <div class="highlight">
-                    <p>Il est à noter que la table parametre_machine permet de paramétrer les requêtes directement en base pour plus d'adaptabilité, ce qui permet de ne pas avoir à refaire un exécutable à chaque changement et offre la possibilité de l'utiliser pour des clients futurs sans faire de modifications dans le code.</p>
-                </div>
-
-                <p>Afin de pouvoir renseigner cette table parametre_machine, j'ai créé une interface permettant de gérer les informations.</p>
-
-                <div class="image-placeholder">
-                    <strong>Illustration 5 : paramètres machine</strong><br>
-                    [Interface de gestion des paramètres machines]
-                </div>
-
-                <p>J'ai aussi créé une page de recherche des informations liées aux valeurs des paramètres machines avec la possibilité de filtrer les données sur les dates, le type d'information, la machine et l'OF.</p>
-
-                <div class="image-placeholder">
-                    <strong>Illustration 6 : écran de recherche des valeurs de paramètres machines</strong><br>
-                    [Interface de recherche et filtrage des données]
-                </div>
-
-                <p>Enfin, j'ai intégré à l'écran de planning des contrôles le choix du paramètre machine à afficher et l'affichage des données liées à ce paramètre machine.</p>
-
-                <div class="image-placeholder">
-                    <strong>Illustration 7 : écran Planning des contrôles</strong><br>
-                    [Interface de planning intégrant les nouveaux paramètres]
-                </div>
-
-                <p>Une fois les développements effectués, j'ai présenté les résultats au client puis j'ai installé cette nouvelle version en production.</p>
-
-                <div class="subsubsection-title">Valorisation des compétences C3, C4 et C5</div>
-
-                <div class="competence-block">
-                    <h4>C3 – Administrer des systèmes informatiques communicants complexes</h4>
-                    <p>Dans le cadre d'un projet d'intégration de nouvelles données dans le logiciel MES, j'ai été amené à accéder à la base de données MongoDB d'un client. Cette base étant hébergée dans un environnement distant et sécurisé, j'ai utilisé un VPN pour établir la connexion et pouvoir récupérer les informations nécessaires.</p>
-                    
-                    <p>Cette étape a mobilisé mes compétences en exploitation des services réseaux et en gestion d'accès à des ressources distantes, souvent utilisées dans le cadre d'infrastructures distribuées ou virtualisées. Elle m'a également permis d'aborder des problématiques de sécurité et de confidentialité des échanges de données.</p>
-                </div>
-
-                <div class="competence-block">
-                    <h4>C4 – Gérer des données de l'information</h4>
-                    <p>Une fois la connexion établie, j'ai développé une fonctionnalité permettant la récupération des données contenues dans la base MongoDB du client. Les informations collectées (nombre de pièces produites, température machine, température codeur, état machine) ont été extraites au format JSON, illustrant la gestion de données hétérogènes issues de systèmes tiers.</p>
-                    
-                    <p>Pour intégrer ces données dans le logiciel MES, j'ai conçu et créé plusieurs tables spécifiques dans la base de données principale :</p>
-                    <ul>
-                        <li>operation_param_machine</li>
-                        <li>valeurs_param_machine</li>
-                        <li>machines_parametre_machine</li>
-                        <li>parametre_machine</li>
-                    </ul>
-                    
-                    <p>J'ai également défini les liens relationnels entre ces tables pour permettre un stockage structuré et une exploitation optimale.</p>
-                    
-                    <p>Afin de rendre ces informations consultables, j'ai développé une page de recherche et de filtrage offrant la possibilité de sélectionner les données selon différents critères : plage de dates, type d'information, machine ou ordre de fabrication (OF). Ce travail a amélioré la capacité d'analyse et de prise de décision des utilisateurs.</p>
-                    
-                    <p>Enfin, pour garantir la flexibilité et la pérennité du système, j'ai conçu la table parametre_machine de manière à paramétrer les requêtes directement en base. Cette approche permet de modifier les requêtes sans devoir recréer un exécutable, ce qui rend la solution facilement adaptable à de futurs clients ou à des changements de configuration, tout en réduisant les coûts de maintenance.</p>
-                </div>
-
-                <div class="competence-block">
-                    <h4>C5 – Conduire un projet</h4>
-                    <p>Dans le prolongement de ce développement, j'ai intégré ces nouvelles données directement dans l'écran de planning des contrôles du logiciel MES, en ajoutant le choix du paramètre machine à afficher ainsi que la visualisation en temps réel des valeurs associées.</p>
-                    
-                    <p>Cette intégration dans une interface existante a nécessité :</p>
-                    <ul>
-                        <li>la compréhension des besoins des utilisateurs,</li>
-                        <li>la prise en compte de l'ergonomie et de la cohérence graphique,</li>
-                        <li>l'adaptation des flux de données pour éviter toute dégradation des performances.</li>
-                    </ul>
-                    
-                    <p>Ce projet illustre ma capacité à mener un développement de bout en bout : analyse du besoin, mise en place de solutions techniques, gestion de données hétérogènes, intégration dans un environnement existant et validation auprès des utilisateurs finaux.</p>
+                <!-- CV -->
+                <div class="portfolio-card fade-in">
+                    <div class="card-icon">👨‍💻</div>
+                    <h3 class="card-title">Curriculum Vitae</h3>
+                    <p class="card-description">
+                        Consultez mon parcours académique et professionnel, mes compétences techniques, 
+                        et mes expériences dans le développement logiciel et l'informatique.
+                    </p>
+                    <div class="card-skills">
+                        <span class="skill-tag">WinDev</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">WinDev Mobile</span>
+                        <span class="skill-tag">MongoDB</span>
+                    </div>
+                    <a href="Bouvais_thomas_CV.pdf" class="card-button" target="_blank">Télécharger PDF</a>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="footer">
-            <p>Portfolio technique - Projet QUALI'MES<br>
-            Développement d'un système MES industriel</p>
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2 class="about-title">À propos de moi</h2>
+                    <p class="about-description">
+                        Étudiant en 3ème année de BUT Informatique, je suis passionné par le développement logiciel 
+                        et la résolution de problèmes complexes. Mon alternance chez Qualigest m'a permis de développer 
+                        une expertise solide en développement d'applications de gestion, optimisation de performances, 
+                        et gestion de projets informatiques.
+                    </p>
+                    <p class="about-description">
+                        Spécialisé dans les environnements WinDev et WinDev Mobile, j'ai une expérience pratique 
+                        en bases de données (SQL, MongoDB), développement d'applications mobiles, et intégration 
+                        de systèmes complexes. Je privilégie toujours la qualité du code et l'innovation technique.
+                    </p>
+                </div>
+                <div class="about-image fade-in">
+                    <div class="profile-image">TB</div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Restons en contact</h2>
+            <div class="contact-content fade-in">
+                <p class="contact-description">
+                    Intéressé par mon profil ? N'hésitez pas à me contacter pour échanger 
+                    sur mes projets, mes compétences ou des opportunités de collaboration.
+                </p>
+                <a href="mailto:thomas.bouvais@example.com" class="contact-button">Me contacter</a>
+                <a href="Bouvais_thomas_CV.pdf" class="contact-button" target="_blank">Mon CV</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Thomas BOUVAIS - Portfolio Développeur Informatique</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Particles animation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            const size = Math.random() * 5 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            
+            document.getElementById('particles').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 25000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 300);
+
+        // Initial particles
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createParticle, i * 200);
+        }
+
+        // Card hover effects
+        document.querySelectorAll('.portfolio-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Typing effect for hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const heroTitle = document.querySelector('.hero-title');
+                const originalText = heroTitle.textContent;
+                typeWriter(heroTitle, originalText, 150);
+            }, 500);
+        });
+    </script>
 </body>
 </html>
