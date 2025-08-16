@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio QUALI'MES - Thomas BOUVAIS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-title {
+            font-size: 3em;
+            font-weight: 300;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .date-info {
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .page {
+            padding: 40px;
+            min-height: 100vh;
+            page-break-before: always;
+        }
+
+        .page-content {
+            max-width: 100%;
+        }
+
+        h1 {
+            color: #2F5496;
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #448DD0;
+            counter-increment: h1-counter;
+        }
+
+        h1::before {
+            content: counter(h1-counter) " ";
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #2F5496;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            counter-increment: h2-counter;
+            counter-reset: h3-counter;
+        }
+
+        h2::before {
+            content: counter(h1-counter) "." counter(h2-counter) " ";
+            font-weight: bold;
+        }
+
+        h3 {
+            color: #2F5496;
+            font-size: 1.3em;
+            margin: 20px 0 12px 0;
+            counter-increment: h3-counter;
+            counter-reset: h4-counter;
+        }
+
+        h3::before {
+            content: counter(h1-counter) "." counter(h2-counter) "." counter(h3-counter) " ";
+            font-weight: bold;
+        }
+
+        h4 {
+            color: #2F5496;
+            font-size: 1.2em;
+            margin: 18px 0 10px 0;
+            font-style: italic;
+            counter-increment: h4-counter;
+        }
+
+        h4::before {
+            content: counter(h1-counter) "." counter(h2-counter) "." counter(h3-counter) "." counter(h4-counter) " ";
+            font-weight: bold;
+        }
+
+        .title-no-number {
+            color: #2F5496;
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #448DD0;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+            text-indent: 1cm;
+            line-height: 1.8;
+        }
+
+        .no-indent {
+            text-indent: 0;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .toc h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2F5496;
+        }
+
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        .toc-item a {
+            color: #2F5496;
+            text-decoration: none;
+            flex-grow: 1;
+        }
+
+        .toc-item a:hover {
+            color: #448DD0;
+            text-decoration: underline;
+        }
+
+        .toc-level-1 {
+            font-weight: bold;
+            margin-left: 0;
+        }
+
+        .toc-level-2 {
+            margin-left: 20px;
+        }
+
+        .toc-level-3 {
+            margin-left: 40px;
+            font-size: 0.95em;
+        }
+
+        .toc-level-4 {
+            margin-left: 60px;
+            font-size: 0.9em;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 25px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .footnote {
+            font-size: 0.85em;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 30px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-left: 5px solid #448DD0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .competence-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .competence-section h4 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .competence-section h4::before {
+            content: "";
+        }
+
+        .company-info {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .tech-specs {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .glossary-term {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .term-name {
+            font-weight: bold;
+            color: #2F5496;
+        }
+
+        .term-definition {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .project-title {
+            color: #2F5496;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .project-icon {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .skill-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .skill-card h5 {
+            color: #2F5496;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .page {
+                page-break-before: always;
+            }
+        }
+
+        body {
+            counter-reset: h1-counter;
+        }
+
+        h1 {
+            counter-reset: h2-counter;
+        }
+
+        h2 {
+            counter-reset: h3-counter;
+        }
+
+        h3 {
+            counter-reset: h4-counter;
+        }
+
+        /* Pas de numérotation pour le portfolio titre, table des matières */
+        .no-number h1, .no-number h2, .no-number h3, .no-number h4 {
+            counter-increment: none;
+        }
+
+        .no-number h1::before, .no-number h2::before, .no-number h3::before, .no-number h4::before {
+            content: "";
+        }
+
+        /* Introduction commence à 1 */
+        .intro-page {
+            counter-reset: h1-counter;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="nav-links">
+                <a href="index.html">🏠 Accueil</a>
+                <a href="rapport.html">📊 Rapport complet</a>
+            </div>
+            <div class="header-content">
+                <h1 class="main-title">Portfolio QUALI'MES</h1>
+                <div class="subtitle">Développement et optimisation d'un logiciel MES</div>
+                <div class="date-info">Thomas BOUVAIS - Alternance Qualigest 2024-2025</div>
+            </div>
+        </div>
+
+        <!-- Table des matières -->
+        <div class="page no-number">
+            <h1 class="title-no-number">Table des matières</h1>
+            
+            <div class="toc">
+                <div class="toc-item toc-level-1">
+                    <a href="#introduction">1. Introduction</a>
+                    <span>1</span>
+                </div>
+                
+                <div class="toc-item toc-level-1">
+                    <a href="#qualimes">2. QUALI'MES</a>
+                    <span>2</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#presentation">2.1 Présentation du logiciel</a>
+                    <span>2</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#debug">2.2 Débug</a>
+                    <span>3</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#debug-cahier">2.2.1 Cahier des charges</a>
+                    <span>3</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#debug-realisations">2.2.2 Réalisations</a>
+                    <span>3</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#debug-competences">2.2.3 Valorisation des compétences C4 et C5</a>
+                    <span>4</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#clignotement">2.3 Clignotement verrine</a>
+                    <span>5</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#clignotement-cahier">2.3.1 Cahier des charges</a>
+                    <span>5</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#clignotement-realisations">2.3.2 Réalisations</a>
+                    <span>6</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#clignotement-competences">2.3.3 Valorisation des compétences C3 et C4</a>
+                    <span>7</span>
+                </div>
+                <div class="toc-item toc-level-2">
+                    <a href="#mongodb">2.4 Récupération mongoDB</a>
+                    <span>8</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#mongodb-cahier">2.4.1 Cahier des charges</a>
+                    <span>8</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#mongodb-realisations">2.4.2 Réalisations</a>
+                    <span>8</span>
+                </div>
+                <div class="toc-item toc-level-3">
+                    <a href="#mongodb-competences">2.4.3 Valorisation des compétences C3, C4 et C5</a>
+                    <span>9</span>
+                </div>
+                
+                <div class="toc-item toc-level-1">
+                    <a href="#illustrations">Table des illustrations</a>
+                    <span>10</span>
+                </div>
+                <div class="toc-item toc-level-1">
+                    <a href="#glossaire">Glossaire, abréviations et acronymes</a>
+                    <span>11</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="page intro-page">
+            <h1 id="introduction">Introduction</h1>
+            
+            <div class="company-info">
+                <p>Au cours de ma troisième année de BUT<span style="font-size: 0.8em; vertical-align: super;">*</span> Informatique, j'ai effectué une alternance d'un an au sein de l'entreprise Qualigest, spécialisée dans le développement de logiciels qualité réalisés avec WinDev. L'une de mes principales missions a porté sur la maintenance et l'évolution du logiciel QUALI'MES. Dans ce cadre, je vais vous présenter plusieurs de mes réalisations ainsi que les compétences que j'ai pu développer à cette occasion.</p>
+            </div>
+            
+            <div class="footnote">
+                <span style="font-size: 0.8em; vertical-align: super;">*</span> Les mots suivis d'un astérisque sont définis dans la partie « <a href="#glossaire">Glossaire, abréviations et acronymes</a> »
+            </div>
+        </div>
+
+        <!-- QUALI'MES -->
+        <div class="page">
+            <h1 id="qualimes">QUALI'MES</h1>
+
+            <h2 id="presentation">Présentation du logiciel</h2>
+            
+            <div class="highlight-box">
+                <p>Un logiciel MES (Manufacturing Execution System) est un outil de gestion et de pilotage des opérations de production en temps réel. Il permet la collecte des données de production des machines via la scrutation ou l'importation de fichiers afin d'optimiser l'exécution des OFs (Ordre de Fabrication) et garantir une traçabilité complète de chaque opération.</p>
+
+                <p>QUALI'MES, le logiciel MES développé par Qualigest, assure non seulement la collecte des données issues des machines via des box<span style="font-size: 0.8em; vertical-align: super;">*</span> (cf. Trace 1), leur affichage dans un tableau de bord, mais permet également de transmettre des informations vers les box en tenant compte des paramètres configurés et des calculs effectués.</p>
+            </div>
+
+            <div class="image-container">
+                <img width="595" height="386" src="Pfolio_fichiers/image001.png" alt="box Vermot - affichage et verrine 4 couleurs">
+                <div class="image-caption">
+                    <strong>Trace 1 :</strong> box Vermot - affichage et verrine 4 couleurs
+                </div>
+            </div>
+
+            <h2 id="debug">Débug</h2>
+
+            <div class="project-card">
+                <div class="project-title">
+                    <div class="project-icon">🔧</div>
+                    <span>Correction et fiabilisation du système</span>
+                </div>
+
+                <h3 id="debug-cahier">Cahier des charges</h3>
+                
+                <p>À mon arrivée sur le projet MES, la priorité a été fixée sur la résolution de nombreux bugs avant toute évolution du logiciel. Mes premières missions ont donc porté sur le débogage.</p>
+
+                <p>En effet, il avait été constaté qu'un certain nombre de données sur les box du client ne correspondaient pas aux données présentes en base de données et affichées au niveau des IHMs (Interface Homme Machine).</p>
+
+                <p>Il m'a donc été demandé d'analyser et résoudre ces problèmes.</p>
+
+                <h3 id="debug-realisations">Réalisations</h3>
+                
+                <p>J'ai rapidement constaté des dysfonctionnements importants dans la base de données, notamment :</p>
+
+                <ul>
+                    <li>L'activation simultanée de plusieurs opérations sur une même machine ;</li>
+                    <li>Des doublons d'opérations sur différentes machines ;</li>
+                    <li>Des incohérences entre l'état des opérations dans le système et la réalité observée chez le client ;</li>
+                    <li>Des calculs erronés au niveau des dates des OFs.</li>
+                </ul>
+
+                <p>Certaines de ces erreurs résultaient d'usages imprévus du MES, comme la clôture puis la réouverture d'opérations ou encore la migration d'une opération d'une machine à une autre sans mise à jour du numéro d'OF associé.</p>
+
+                <p>Dans ce contexte, mes interventions initiales ont consisté à identifier et corriger ces anomalies en passant au crible toutes les machines et opérations pour repérer les incohérences, afin de remonter jusqu'à la partie du code à l'origine des problèmes.</p>
+
+                <p>Pour optimiser ce processus fastidieux nécessitant un recensement manuel, j'ai alors pris l'initiative de développer une page de débogage automatisé (cf. Trace 2). Cette nouvelle interface a permis de vérifier en temps réel l'intégralité des opérations, d'identifier rapidement les erreurs existantes, et de faciliter le suivi des corrections. Elle a ensuite été intégrée au logiciel MES puis enrichie progressivement pour accompagner l'intégration de nouvelles fonctionnalités.</p>
+
+                <div class="image-container">
+                    <img width="637" height="246" src="Pfolio_fichiers/image003.png" alt="page de débogage automatisé">
+                    <div class="image-caption">
+                        <strong>Trace 2 :</strong> page de débogage automatisé
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="debug-competences">Valorisation des compétences C4 et C5</h3>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="competence-section">
+                        <h4>C4 – Gérer des données de l'information</h4>
+                        <p>Dans le cadre de ce projet, j'ai mobilisé la compétence C4 en mettant en place une véritable démarche de fiabilisation et d'organisation de l'information. Les données manipulées par le logiciel MES, à la fois critiques et nombreuses, présentaient des incohérences qui rendaient leur exploitation complexe. Grâce à mon intervention, ces informations ont pu être corrigées puis structurées de manière à garantir leur exactitude et leur cohérence dans la durée. J'ai également introduit un outil de contrôle automatisé qui a transformé une simple tâche de vérification ponctuelle en un processus intégré et pérenne, renforçant ainsi la traçabilité et la valeur des données exploitées par le système.</p>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="competence-section">
+                        <h4>C5 – Conduire un projet</h4>
+                        <p>Au-delà de la correction des incohérences, ma contribution s'est inscrite dans une logique de pilotage du projet qui visait en priorité à répondre aux besoins du client. J'ai intégré mes actions dans une démarche d'amélioration continue du logiciel. En prenant des initiatives, j'ai pu m'affirmer comme un acteur de la conduite du projet, en reliant mes développements techniques aux objectifs généraux définis pour le système d'information.</p>
+                        <p>Cette démarche proactive a engendré à la fois un gain économique, en réduisant de manière significative le temps de travail nécessaire aux équipes techniques, et un impact sociétal, en améliorant le confort de travail des développeurs, qui peuvent désormais se consacrer à des activités à plus forte valeur ajoutée.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="clignotement">Clignotement verrine</h2>
+
+            <div class="project-card">
+                <div class="project-title">
+                    <div class="project-icon">💡</div>
+                    <span>Système d'alertes visuelles avancé</span>
+                </div>
+
+                <h3 id="clignotement-cahier">Cahier des charges</h3>
+                
+                <p>Mettre en œuvre un système de détection de nouvelles alertes machines, ainsi que leur affichage simultané sur la verrine<span style="font-size: 0.8em; vertical-align: super;">*</span> de la box<span style="font-size: 0.8em; vertical-align: super;">*</span> machine et sur l'interface logicielle, au niveau du tableau de bord et de la page de débogage.</p>
+
+                <p>La verrine installée sur la machine comporte quatre lumières (1 verte, 1 rouge, 1 bleu, 1 jaune) pouvant s'allumer et clignoter indépendamment les unes des autres. Aujourd'hui, elle est utilisée pour signaler certains états de fonctionnement tel que le fait que la machine soit active (lumière verte fixe), arrêtée (lumière rouge fixe) ou que la cadence de production est trop faible ou trop élevée (lumière verte clignotante).</p>
+
+                <div class="tech-specs">
+                    <strong>Les nouvelles alertes à détecter sont :</strong>
+                    <ul>
+                        <li>Pas d'OF actif ⇒ donné par la box</li>
+                        <li>Alerte affutage ⇒ donné par la box</li>
+                        <li>cadence de production trop faible ou trop élevée avec un facteur paramétrable</li>
+                        <li>Variation trop grande de la vitesse de production</li>
+                    </ul>
+                </div>
+
+                <p>Ces nouvelles alertes doivent être signalées par un clignotement bleu au niveau de la verrine, du tableau de bord et de la page de débug. Toutefois, le clignotement bleu ne doit être pris en compte que lorsque les états suivants de la machine sont sélectionnés :</p>
+
+                <ul>
+                    <li>Pas d'OF actif</li>
+                    <li>Machine en chauffe</li>
+                    <li>Machine en production</li>
+                    <li>Machine à l'arrêt</li>
+                    <li>Machine en cours de réglage</li>
+                    <li>Machine en cours de ravitaillement</li>
+                    <li>Autre</li>
+                </ul>
+
+                <h3 id="clignotement-realisations">Réalisations</h3>
+                
+                <p>Pour ce développement, j'ai commencé par analyser le format des données émises par les box afin d'identifier et décoder les informations contenues dans une trame. Lors de la scrutation, des sockets<span style="font-size: 0.8em; vertical-align: super;">*</span> sont créées pour communiquer individuellement avec chaque box, ce qui me permet d'extraire précisément les octets ciblés grâce à la structure de la trame, puis de stocker les données en base si besoin.</p>
+
+                <p>Une fois les informations techniques analysées, j'ai développé plusieurs fonctionnalités visant à améliorer l'intégration des signaux lumineux dans le système.</p>
+
+                <p>Tout d'abord, j'ai procédé à un ajustement de la base de données : auparavant, le clignotement vert était uniquement géré localement par la box, sans répercussion en base ni sur l'interface utilisateur. Pour corriger cela, j'ai ajouté une colonne dans la table des machines permettant de stocker l'état de clignotement (0 pour aucun, 1 pour vert, 2 pour bleu).</p>
+
+                <p>En parallèle, j'ai conçu un écran dédié au paramétrage de ces états (cf. Trace 3) et développé les fonctions de calcul associées. Concernant l'alerte de "variation trop grande de la vitesse de production", le cahier des charges initial prévoyait une comparaison sur 3 valeurs, mais j'ai proposé une solution plus flexible s'appuyant sur les <em>n</em> dernières valeurs.</p>
+
+                <div class="image-container">
+                    <img width="326" height="221" src="Pfolio_fichiers/image004.png" alt="écran de paramétrage des états">
+                    <div class="image-caption">
+                        <strong>Trace 3 :</strong> écran de paramétrage des états
+                    </div>
+                </div>
+
+                <p>J'ai également modifié le tableau de bord (cf. Trace 4) pour intégrer ces nouvelles fonctionnalités. La complexité de ce développement réside notamment dans la prise en compte des contraintes suivantes :</p>
+
+                <ul>
+                    <li>La mise à jour automatique toutes les minutes selon les données présentes en base via une requête asynchrone afin de limiter les ralentissements, en particulier perceptibles lors du clignotement.</li>
+                    <li>la gestion du statut de chaque box via un ping, opération coûteuse en temps et nécessitant l'utilisation du multithreading</li>
+                    <li>L'affichage en temps réel du clignotement.</li>
+                </ul>
+
+                <p>Par ailleurs, j'ai aussi modifié la page de débug (cf. Trace 2) pour intégrer ces nouveaux paramètres, avec les mêmes contraintes techniques que sur le tableau de bord.</p>
+
+                <p>J'ai terminé en mettant en place l'envoi du signal de clignotement bleu à la box, pour que l'affichage corresponde bien aux réglages faits dans l'IHM<span style="font-size: 0.8em; vertical-align: super;">*</span>.</p>
+
+                <div class="image-container">
+                    <img width="605" height="232" src="Pfolio_fichiers/image005.png" alt="écran Tableau de bord">
+                    <div class="image-caption">
+                        <strong>Trace 4 :</strong> écran Tableau de bord
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="clignotement-competences">Valorisation des compétences C3 et C4</h3>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="competence-section">
+                        <h4>C3 – Administrer des systèmes informatiques communicants complexes</h4>
+                        <p>Dans ce projet, j'ai pu mettre en pratique la compétence C3 en assurant le déploiement d'un service de communication fiable entre les box machines et l'interface logicielle. Mon travail m'a permis de transformer un ensemble d'informations brutes transmises par le réseau en données exploitées directement par les utilisateurs, tout en garantissant une cohérence avec les signaux physiques de la verrine et en prenant en compte les contraintes liées aux échanges en temps réel. Cette expérience m'a montré combien chaque composant – la base, les interfaces, la verrine – dépend étroitement des autres pour délivrer un service fluide et cohérent.</p>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="competence-section">
+                        <h4>C4 – Gérer des données de l'information</h4>
+                        <p>Ce développement m'a permis d'aller au-delà de la simple collecte de données pour les transformer en informations utiles à la prise de décision. J'ai assuré que les alertes générées par les machines puissent être exploitées de manière claire, interprétable et directement utile aux utilisateurs. Ainsi, le traitement des états et des clignotements ne constituait pas seulement une gestion technique, mais bien une logique de système d'information décisionnel, où chaque donnée enregistrée devient une ressource exploitable pour améliorer la réactivité et la qualité de suivi de la production.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="mongodb">Récupération mongoDB</h2>
+
+            <div class="project-card">
+                <div class="project-title">
+                    <div class="project-icon">🗄️</div>
+                    <span>Intégration de données externes</span>
+                </div>
+
+                <h3 id="mongodb-cahier">Cahier des charges</h3>
+                
+                <p>Le client possède un outil externe lui permettant d'enregistrer les paramètres machine (Nombre de pièces, température du moteur, température du codeur et état de la machine) au sein d'une base de données MongoDb.</p>
+
+                <p>Le client souhaite que ces données soient visibles au sein du logiciel QUALI'MES.</p>
+
+                <h3 id="mongodb-realisations">Réalisations</h3>
+                
+                <p>Un aspect important de mon travail a été la récupération des données depuis une base MongoDB gérée par le client.</p>
+
+                <p>Dans un premier temps j'ai développé la fonction de récupération des données contenues dans une base MongoDb située chez le client. Lors des phases de test et de développement j'ai dû passer par un VPN pour pouvoir accéder directement à la base de données du client. J'ai établi une connexion à la base et récupéré les données nécessaires au format JSON.</p>
+
+                <p>Pour enregistrer les données dans la base du logiciel MES, j'ai créé plusieurs tables (cf. Trace 5). Les tables « opérations » et « machines » existaient déjà et j'ai ajouté les tables operation_param_machine, valeurs_param_machine, machines_parametre_machine et parametre_machine, ainsi que les liens associés.</p>
+
+                <div class="image-container">
+                    <img width="605" height="537" src="Pfolio_fichiers/image006.jpg" alt="Tables pour intégration des données en provenance de MongoDb">
+                    <div class="image-caption">
+                        <strong>Trace 5 :</strong> Tables pour intégration des données en provenance de MongoDb
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>Il est à noter que la table parametre_machine permet de paramétrer les requêtes directement en base pour plus d'adaptabilité, ce qui permet de ne pas avoir à refaire un exécutable à chaque changement et offre la possibilité de l'utiliser pour des clients futurs sans faire de modifications dans le code.</p>
+                </div>
+
+                <p>Afin de pouvoir renseigner cette table parametre_machine, j'ai créé une interface (cf. Trace 6) permettant de gérer les informations.</p>
+
+                <div class="image-container">
+                    <img width="562" height="363" src="Pfolio_fichiers/image007.png" alt="paramètres machine">
+                    <div class="image-caption">
+                        <strong>Trace 6 :</strong> paramètres machine
+                    </div>
+                </div>
+
+                <p>J'ai aussi créé une page de recherche des informations liées aux valeurs des paramètres machines (cf. Trace 7) avec la possibilité de filtrer les données sur les dates, le type d'information, la machine et l'OF.</p>
+
+                <div class="image-container">
+                    <img width="564" height="336" src="Pfolio_fichiers/image008.png" alt="écran de recherche des valeurs de paramètres machines">
+                    <div class="image-caption">
+                        <strong>Trace 7 :</strong> écran de recherche des valeurs de paramètres machines
+                    </div>
+                </div>
+
+                <p>Enfin, j'ai intégré à l'écran de planning des contrôles (cf. Trace 8) le choix du paramètre machine à afficher et l'affichage des données liées à ce paramètre machine.</p>
+
+                <div class="image-container">
+                    <img width="605" height="359" src="Pfolio_fichiers/image009.png" alt="écran Planning des contrôles">
+                    <div class="image-caption">
+                        <strong>Trace 8 :</strong> écran Planning des contrôles
+                    </div>
+                </div>
+
+                <p>Une fois les développements effectués, j'ai présenté les résultats au client puis j'ai installé cette nouvelle version en production.</p>
+            </div>
+
+            <h3 id="mongodb-competences">Valorisation des compétences C3, C4 et C5</h3>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="competence-section">
+                        <h4>C3 – Administrer des systèmes informatiques communicants complexes</h4>
+                        <p>Lors de ce projet, j'ai été amené à accéder à une base de données MongoDB hébergée chez le client, et j'ai utilisé un VPN afin d'établir une connexion sécurisée pour en récupérer les informations nécessaires. Cette étape a mobilisé mes compétences en exploitation des services réseaux et en gestion d'accès à des ressources distantes.</p>
+                        <p>L'intégration des paramètres machines issus de la base MongoDB a permis au client d'exploiter dans QUALI'MES des informations jusqu'alors isolées, renforçant la valeur de l'outil. J'ai ainsi pris conscience que le déploiement d'un tel service ne se réduit pas à une problématique technique, mais s'inscrit dans une logique plus large de valorisation des données et d'optimisation du système d'information.</p>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="competence-section">
+                        <h4>C4 – Gérer des données de l'information</h4>
+                        <p>Ce développement m'a permis de dépasser le simple transfert de données pour mettre en place un véritable principe de système d'information décisionnel. J'ai veillé à transformer les données brutes issues de la base MongoDB en informations interprétables, consultables et filtrables directement par les utilisateurs de QUALI'MES. Lors de leur intégration dans la base en place, j'ai conçu une structure adaptée et cohérente avec l'architecture déjà déployée. La donnée, ainsi réorganisée et valorisée, devient un support d'analyse et un outil qui améliore la prise de décision, tout en renforçant la pertinence des indicateurs suivis par le client.</p>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="competence-section">
+                        <h4>C5 – Conduire un projet</h4>
+                        <p>Cette réalisation m'a placé dans un véritable contexte de conduite de projet, où il ne s'agissait pas simplement de coder une fonctionnalité mais de contribuer à une conception construite étape par étape. J'ai intégré chaque phase dans une démarche structurée : analyse du besoin, élaboration d'une solution technique adaptée, validation avec le client et déploiement en environnement de production. Ce processus m'a permis d'acquérir une expérience concrète de la conduite de projet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table des illustrations -->
+        <div class="page no-number">
+            <h1 class="title-no-number" id="illustrations">Table des illustrations</h1>
+            
+            <div class="toc">
+                <div class="toc-item">
+                    <span>Trace 1 : box Vermot - affichage et verrine 4 couleurs</span>
+                    <span>2</span>
+                </div>
+                <div class="toc-item">
+                    <span>Trace 2 : page de débogage automatisé</span>
+                    <span>4</span>
+                </div>
+                <div class="toc-item">
+                    <span>Trace 3 : écran de paramétrage des états</span>
+                    <span>6</span>
+                </div>
+                <div class="toc-item">
+                    <span>Trace 4 : écran Tableau de bord</span>
+                    <span>7</span>
+                </div>
+                <div class="toc-item">
+                    <span>Trace 5 : Tables pour intégration des données en provenance de MongoDb</span>
+                    <span>8</span>
+                </div>
+                <div class="toc-item">
+                    <span>Trace 6 : paramètres machine</span>
+                    <span>9</span>
+                </div>
+                <div class="toc-item">
+                    <span>Trace 7 : écran de recherche des valeurs de paramètres machines</span>
+                    <span>9</span>
+                </div>
+                <div class="toc-item">
+                    <span>Trace 8 : écran Planning des contrôles</span>
+                    <span>9</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Glossaire -->
+        <div class="page no-number">
+            <h1 class="title-no-number" id="glossaire">Glossaire, abréviations et acronymes</h1>
+            
+            <div class="glossary-term">
+                <span class="term-name">Box</span>
+                <div class="term-definition">: boîtier se connectant à des machines et permettant de collecter et exploiter les données de production en temps réel, facilitant le suivi et l'analyse.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">BUT</span>
+                <div class="term-definition">: <strong>B</strong>achelor <strong>U</strong>niversitaire de <strong>T</strong>echnologie</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">IHM</span>
+                <div class="term-definition">: <strong>I</strong>nterface <strong>H</strong>omme-<strong>M</strong>achine - dispositif matériel et/ou logiciel qui permet à une personne (l'utilisateur) d'interagir avec une machine, un système ou un appareil.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">IUT</span>
+                <div class="term-definition">: <strong>I</strong>nstitut <strong>U</strong>niversitaire de <strong>T</strong>echnologie</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">MES</span>
+                <div class="term-definition">: Manufacturing Execution System - système informatique complet qui surveille, documente, suit et contrôle en temps réel le processus de production, depuis les matières premières jusqu'au produit fini.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">OF</span>
+                <div class="term-definition">: <strong>O</strong>rdre de <strong>F</strong>abrication</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">Socket</span>
+                <div class="term-definition">: point de communication qui permet à deux programmes (souvent sur des machines différentes, mais pas forcément) d'échanger des données via un réseau.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">SQL</span>
+                <div class="term-definition">: <strong>S</strong>tructured <strong>Q</strong>uery <strong>L</strong>anguage ou langage de requête structuré - langage informatique standard utilisé pour gérer et manipuler des bases de données relationnelles.</div>
+            </div>
+
+            <div class="glossary-term">
+                <span class="term-name">Verrine</span>
+                <div class="term-definition">: ensemble de lumières installé sur une box pouvant s'allumer et clignoter indépendamment les unes des autres.</div>
+            </div>
+        </div>
+
+        <!-- Footer avec navigation -->
+        <div class="page no-number">
+            <div class="company-info" style="text-align: center;">
+                <h2>Navigation du Portfolio</h2>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    <a href="index.html" style="color: white; text-decoration: none; padding: 15px 30px; background: rgba(255,255,255,0.2); border-radius: 25px; display: flex; align-items: center; gap: 10px;">
+                        🏠 Retour à l'accueil
+                    </a>
+                    <a href="rapport.html" style="color: white; text-decoration: none; padding: 15px 30px; background: rgba(255,255,255,0.2); border-radius: 25px; display: flex; align-items: center; gap: 10px;">
+                        📊 Rapport complet
+                    </a>
+                    <a href="rapport.pdf" style="color: white; text-decoration: none; padding: 15px 30px; background: rgba(255,255,255,0.2); border-radius: 25px; display: flex; align-items: center; gap: 10px;" target="_blank">
+                        📄 PDF du rapport
+                    </a>
+                </div>
+                <p style="margin-top: 30px; opacity: 0.9;">
+                    <strong>Thomas BOUVAIS</strong> - Portfolio QUALI'MES<br>
+                    Compétences développées : C3, C4, C5<br>
+                    Alternance Qualigest 2024-2025
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
